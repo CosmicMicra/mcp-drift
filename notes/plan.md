@@ -19,7 +19,7 @@ Trusted Once, Changed Later: A Longitudinal Study of Post-Approval Drift in MCP 
 - [x] Literature check (notes/related_work.md)
 - [x] Crawl: 4,812 repos tagged mcp-server / model-context-protocol / mcp-servers with >= 20 stars
 - [x] Extractor (tree-sitter; Python + TS/JS; decorators, registerTool, tool(), Tool(), object/dict literals)
-- [ ] History extraction over 3,508 Python/TS/JS repos (running)
+- [x] History extraction over 3,508 Python/TS/JS repos (v2 extractor; 2,571 analyzable, 35,725 versions)
 - [ ] Extractor recall/precision check on a hand-labelled sample (YOU)
 - [ ] Manual validation of ~200 drift events (YOU)
 - [ ] Figures + paper
@@ -30,3 +30,11 @@ Trusted Once, Changed Later: A Longitudinal Study of Post-Approval Drift in MCP 
 - Version = release tag when >= 3 tags, else up to 12 time-spaced commits; HEAD always included.
 - Only default-branch, first-parent history; npm/PyPI published artifacts may differ from git.
 - Large monorepos (> 600 source files at HEAD) excluded: not dedicated MCP servers.
+
+## First full results (v2 extractor, UNVALIDATED; 2,571 servers, 35,725 versions)
+- Silent high-risk tool capability gain: 15.6% of servers (any path); 2.1% in the tool's own handler.
+- Silent server-level high-risk gain (no tool/description/README change): 3.6%.
+- Tool description changed after first release: 65.6% of servers.
+- "Suspicious" description changes: 8.1% of servers, but manual read of all 14 concealment/zero-width hits: all benign
+  agent-steering. No evidence so far of malicious description rug pulls. Keyword markers cannot separate steering from injection.
+- TODO for paper: per-repo rates grow with number of versions; also report per-step and per-year rates.
