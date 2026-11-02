@@ -1,0 +1,5 @@
+repo,stars,language,n_versions,tagged,first_time,last_time,n_tools_first,n_tools_last,TOOL_CAP_GAIN,DESC_MUTATION,DESC_SUSPICIOUS,SERVER_CAP_GAIN,NEW_DOMAIN,NEW_DEP,TOOL_ADDED,silent_gain,silent_high_risk_gain
+D4Vinci/Scrapling,92012,Python,24,True,1756700775,1793555999,6,0,0,0,0,0,1,0,0,0,0
+ahujasid/mcp-for-blender,33039,Python,10,False,1741341556,1793265209,7,14,0,34,0,4,22,1,36,0,0
+sansan0/TrendRadar,63362,Python,41,True,1765604675,1793273867,17,27,0,17,0,0,14,4,12,0,0
+upstash/context7,64064,TypeScript,41,True,1745149366,1793608438,2,3,0,10,1,5,16,24,2,0,0
