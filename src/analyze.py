@@ -115,6 +115,7 @@ def analyze_repo(d):
                 else:
                     disc = "undisclosed"
                 events.append({**base, "type": "TOOL_CAP_GAIN", "tool": name, "cap": c, "disclosure": disc,
+                               "direct": c in y.get("direct_caps", []), "via": y.get("caps_via", {}).get(c, "?"),
                                "new_domains": sorted(set(y["domains"]) - set(x["domains"])),
                                "file": y["file"], "desc": y["description"][:1000]})
         for name in sorted(tb.keys() - ta.keys()):
@@ -144,6 +145,8 @@ def analyze_repo(d):
     summ["silent_gain"] = sum(1 for e in events if e["type"] == "TOOL_CAP_GAIN" and e["disclosure"] == "silent")
     summ["silent_server_gain"] = sum(1 for e in events if e["type"] == "SERVER_CAP_GAIN" and e["silent"])
     summ["silent_server_high_risk_gain"] = sum(1 for e in events if e["type"] == "SERVER_CAP_GAIN" and e["silent"] and e["cap"] in HIGH_RISK)
+    summ["silent_direct_high_risk_gain"] = sum(1 for e in events if e["type"] == "TOOL_CAP_GAIN"
+                                               and e["disclosure"] == "silent" and e["cap"] in HIGH_RISK and e["direct"])
     summ["silent_high_risk_gain"] = sum(1 for e in events if e["type"] == "TOOL_CAP_GAIN"
                                         and e["disclosure"] == "silent" and e["cap"] in HIGH_RISK)
     return summ, events
@@ -178,6 +181,7 @@ def main():
           f"median versions/repo: {statistics.median([s['n_versions'] for s in summaries]) if n else 0}")
     for key, label in [("TOOL_CAP_GAIN", "any tool capability gain"), ("silent_gain", "silent tool capability gain"),
                        ("silent_high_risk_gain", "silent HIGH-RISK tool capability gain"),
+                       ("silent_direct_high_risk_gain", "silent HIGH-RISK gain in the tool's own handler"),
                        ("DESC_MUTATION", "tool description mutation"), ("DESC_SUSPICIOUS", "suspicious description mutation"),
                        ("SERVER_CAP_GAIN", "server capability gain"),
                        ("silent_server_gain", "SILENT server capability gain (no tool/desc/README change)"),

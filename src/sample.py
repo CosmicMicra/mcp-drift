@@ -20,7 +20,8 @@ def pick(rows, k, per_repo=1):
     return out
 
 strata = {
-    "silent_highrisk_tool_gain": pick([e for e in ev if e["type"] == "TOOL_CAP_GAIN" and e["disclosure"] == "silent" and e["cap"] in HIGH], 80),
+    "silent_highrisk_direct": pick([e for e in ev if e["type"] == "TOOL_CAP_GAIN" and e["disclosure"] == "silent" and e["cap"] in HIGH and e.get("direct")], 50),
+    "silent_highrisk_via_helper": pick([e for e in ev if e["type"] == "TOOL_CAP_GAIN" and e["disclosure"] == "silent" and e["cap"] in HIGH and not e.get("direct")], 30),
     "other_tool_gain": pick([e for e in ev if e["type"] == "TOOL_CAP_GAIN" and not (e["disclosure"] == "silent" and e["cap"] in HIGH)], 30),
     "silent_server_gain": pick([e for e in ev if e["type"] == "SERVER_CAP_GAIN" and e["silent"]], 50),
     "suspicious_desc": pick([e for e in ev if e["type"] == "DESC_SUSPICIOUS"], 40),
@@ -28,16 +29,16 @@ strata = {
 out = ROOT / "validation"; out.mkdir(exist_ok=True)
 with open(out / "drift_events.csv", "w", newline="") as f:
     w = csv.writer(f)
-    w.writerow(["id", "stratum", "repo", "tool", "cap_or_markers", "from_tag", "to_tag", "compare_url",
-                "old_desc", "new_desc", "LABEL real/fp/unsure", "LABEL capability really added? y/n", "notes"])
+    w.writerow(["id", "stratum", "repo", "tool", "cap_or_markers", "via", "from_tag", "to_tag", "compare_url",
+                "old_desc", "new_desc", "LABEL extraction_error / benign / security_relevant / unsure", "notes"])
     i = 0
     for s, rows in strata.items():
         for e in rows:
             i += 1
-            w.writerow([i, s, e["repo"], e.get("tool", ""), e.get("cap") or ",".join(e.get("markers", [])),
+            w.writerow([i, s, e["repo"], e.get("tool", ""), e.get("cap") or ",".join(e.get("markers", [])), e.get("via", ""),
                         e.get("from_tag") or e["from"], e.get("to_tag") or e["to"],
                         f"https://github.com/{e['repo']}/compare/{e['from']}...{e['to']}",
-                        e.get("old", "")[:500], (e.get("new") or e.get("desc", ""))[:500], "", "", ""])
+                        e.get("old", "")[:500], (e.get("new") or e.get("desc", ""))[:500], "", ""])
 # extractor sample: random tools from HEAD snapshots
 tools = []
 for p in (ROOT / "data/snapshots").glob("*.json"):
