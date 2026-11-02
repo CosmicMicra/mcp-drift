@@ -91,6 +91,8 @@ class Tool:
     domains: list = field(default_factory=list)
     body_hash: str = ""
     callees: list = field(default_factory=list)  # helper names, resolved repo-wide later
+    direct_caps: list = field(default_factory=list)  # caps in the tool's own handler body
+    caps_via: dict = field(default_factory=dict)  # cap -> "self" or first helper that adds it
 
     def to_dict(self):
         return asdict(self)
@@ -182,12 +184,16 @@ def py_functions(root, src):
 
 
 def extract_python(path, text):
-    if ".tool" not in text and "Tool(" not in text and "inputSchema" not in text and "input_schema" not in text:
+    if ".tool" not in text and ".add_tool" not in text and "Tool(" not in text and "inputSchema" not in text and "input_schema" not in text:
         return [], {}
     src = text.encode("utf-8", "ignore")
     root = PY.parse(src).root_node
     consts = _py_consts(root, src)
     funcs = py_functions(root, src)
+    fnodes = {}
+    for n in _walk(root):
+        if n.type == "function_definition" and n.child_by_field_name("name") is not None:
+            fnodes.setdefault(_txt(n.child_by_field_name("name"), src), n)
     tools = []
     for n in _walk(root):
         if n.type == "decorated_definition":
@@ -214,6 +220,32 @@ def extract_python(path, text):
                 body = _txt(fn, src)
                 tools.append(Tool(name, desc.strip(), path, "py", dyn, body_hash=_h(body),
                                   callees=_body_info(body)))
+                tools[-1]._body = body
+        elif n.type == "call" and (n.child_by_field_name("function") is not None
+                                   and _txt(n.child_by_field_name("function"), src).endswith(".add_tool")):
+            # FastMCP imperative form: server.add_tool(fn | wrapper(fn), name=?, description=?)
+            kw, pos = _kwargs(n, src)
+            if not pos:
+                continue
+            a = pos[0]
+            while a.type == "call":
+                _, inner = _kwargs(a, src)
+                if not inner:
+                    break
+                a = inner[0]
+            if a.type not in ("identifier", "attribute"):
+                continue
+            fname = _txt(a, src).split(".")[-1]
+            name = _py_str(kw.get("name"), src, consts) or fname
+            fnode = fnodes.get(fname)
+            if "description" in kw:
+                desc = _py_str(kw["description"], src, consts)
+                dyn, desc = desc is None, desc or ""
+            else:
+                desc, dyn = (_py_docstring(fnode, src) if fnode is not None else ""), False
+            body = funcs.get(fname, "")
+            tools.append(Tool(name, desc.strip(), path, "py", dyn, body_hash=_h(body), callees=_body_info(body)))
+            tools[-1]._body = body
         elif n.type == "call":
             f = n.child_by_field_name("function")
             if f is None or _txt(f, src).split(".")[-1] != "Tool":
@@ -436,18 +468,23 @@ def analyze_tree(files):
             all_funcs.setdefault(k, v)
         server_text.append(text)
     for t in all_tools:
-        parts, seen, frontier = [t._body], set(), [t._body]
+        parts, seen, frontier = [("self", t._body)], set(), [t._body]
         for _ in range(4):
             nxt = []
             for b in frontier:
                 for c in CALL_RE.findall(b):
                     if c in all_funcs and c not in seen and len(seen) < 150:
                         seen.add(c)
-                        parts.append(all_funcs[c])
+                        parts.append((c, all_funcs[c]))
                         nxt.append(all_funcs[c])
             frontier = nxt
-        full = "\n".join(parts)
+        full = "\n".join(b for _, b in parts)
         t.caps, t.domains = capabilities(full), domains(full)
+        t.direct_caps = capabilities(t._body)
+        t.caps_via = {}
+        for who, b in parts:  # BFS order: nearest source first
+            for c in capabilities(b):
+                t.caps_via.setdefault(c, who)
         t.callees = []
         del t._body
     blob = "\n".join(server_text)

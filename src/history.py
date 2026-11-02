@@ -225,6 +225,7 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--min-stars", type=int, default=20)
+    ap.add_argument("--shard", default="0/1", help="i/n: process every n-th repo starting at i")
     a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     recs = [json.loads(l) for l in REPOS.open()]
@@ -233,6 +234,8 @@ def main():
     recs.sort(key=lambda r: -r["stars"])
     if a.limit:
         recs = recs[:a.limit]
+    si, sn = map(int, a.shard.split("/"))
+    recs = recs[si::sn]
     print(f"processing {len(recs)} repos", flush=True)
     with ProcessPoolExecutor(a.workers) as ex:
         futs = [ex.submit(process, r) for r in recs]
