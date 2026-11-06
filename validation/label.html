@@ -72,6 +72,9 @@ textarea { min-height: 56px; resize: vertical; }
 .save { font-size: 13px; color: var(--muted); }
 .save.ok { color: var(--ok); } .save.bad { color: var(--err); }
 .banner { background: var(--sec-soft); border: 1px solid var(--sec); border-radius: 8px; padding: 10px 14px; font-size: 14px; }
+.backup { display: grid; gap: 8px; justify-items: start; border-top: 1px solid var(--line); padding-top: 14px; }
+.backup button { font: inherit; font-weight: 500; border: 1px solid var(--accent); color: var(--accent); background: var(--panel); padding: 8px 14px; border-radius: 6px; cursor: pointer; }
+.backup textarea { min-height: 140px; font-family: var(--mono); font-size: 12px; }
 .milestone { background: var(--ok-soft); border: 1px solid var(--ok); border-radius: 8px; padding: 10px 14px; font-size: 14px; }
 @media (max-width: 560px) { .descs, .labels { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .progress > div { transition: none; } }
@@ -120,6 +123,11 @@ textarea { min-height: 56px; resize: vertical; }
     <button id="prev">← Previous</button>
     <span class="jump"><label for="jump">Go to item</label><input id="jump" type="text" inputmode="numeric"><button id="next-unl">Next unlabelled</button></span>
     <button id="next">Next →</button>
+  </div>
+  <div class="backup">
+    <button id="copy">Copy all my labels</button>
+    <span id="copied" class="save">Use this if the status line says "browser only", then paste the result to Claude in chat.</span>
+    <textarea id="dump" readonly hidden aria-label="Your labels as text"></textarea>
   </div>
 </div>
 
@@ -267,6 +275,20 @@ document.addEventListener("keydown", (e) => {
   else if (tab === "events" && /^[1-4]$/.test(e.key)) choose("label", EV_LABELS[+e.key - 1][0]);
 });
 render();
+
+$("copy").onclick = async () => {
+  const out = {};
+  for (const [k, v] of Object.entries(labels)) {
+    const o = {};
+    for (const f of ["label", "real", "desc_ok", "missed", "notes"]) if (v[f]) o[f] = v[f];
+    if (Object.keys(o).length) out[k] = o;
+  }
+  const text = "MCP-LABELS " + JSON.stringify(out);
+  const ta = $("dump"); ta.value = text; ta.hidden = false;
+  const n = Object.keys(out).length;
+  try { await navigator.clipboard.writeText(text); $("copied").textContent = `Copied ${n} labels. Paste them to Claude in chat.`; $("copied").className = "save ok"; }
+  catch (e) { ta.focus(); ta.select(); $("copied").textContent = `${n} labels are selected in the box below. Copy them (Ctrl/Cmd+C) and paste to Claude.`; }
+};
 
 (async () => {
   try {
