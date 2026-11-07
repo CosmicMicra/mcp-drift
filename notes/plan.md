@@ -50,3 +50,12 @@ Trusted Once, Changed Later: A Longitudinal Study of Post-Approval Drift in MCP 
 - On high-risk gain in a tool's own code: mean 0.1/yr; 6%
 - 700 steps with silent high-risk gains (description unchanged): a description-change rule misses all of them by construction
 - Claude's 20 labels: 5 extraction errors, 14 benign, 1 unsure, 0 security-relevant (validation/claude_labels_first20.json)
+
+## Agent-mediated execution (Nov 7)
+Description scan (src/agent_exec.py, all versions): 40 matching repo/tool pairs in 26 repos; manual classification:
+- AI told to run something in its own shell: 5 clear repos (context-mode ctx_upgrade/ctx_doctor "You MUST run the
+  returned command using your shell tool"; sidecar "ALWAYS run `sleep 25` in your shell" (added v0.4.2);
+  ui-beats "Run the returned command in the project root" (npm install); memi "Run npm install ...") + 2 borderline
+  (gdharness, added v1.3.8; gemini-cloud-assist routes gcloud to the agent's shell tool)
+- ask the human: 4; tool executes itself: 7; "use this tool instead of the terminal": 3 repos; false matches: 6
+=> in descriptions this is rare (~0.2-0.3% of 2,571 servers). Next: scan tool OUTPUT strings in code (src/agent_exec_code.py, HEAD only).
