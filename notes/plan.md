@@ -72,3 +72,10 @@ AI-addressed cues left 88 repos; reading all of them:
 - the rest: human-facing setup text.
 => Agent-mediated execution is RARE (a handful of servers). Paper: short case-study subsection, incl. the
    system-reminder imitation and the lack of any convention. Stop exploring here.
+
+## Case study candidate (found by Soniya while labelling e-51; verified by Claude in code, Nov 8)
+swarmclawai/swarmvault v0.1.20 adds MCP tool query_graph, description: "Traverse the local graph from search seeds
+without calling a model provider." Handler -> queryGraphVault -> ensureCompiledGraph: if the search DB or graph file
+is missing it calls compileVault(), which gets getProviderForTask("compileProvider") and analyses sources lacking
+analyses. With a remote provider configured, a "no provider" lookup can send document text to that provider.
+Not observed live; code path only. Description-code mismatch in a newly added tool (DCI-style), not post-approval drift.
