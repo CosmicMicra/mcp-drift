@@ -32,3 +32,8 @@
 | e-86 | done |
 | e-116 | done |
 | e-166 | done |
+| e-7 | done |
+| e-57 | done |
+| e-87 | done |
+| e-117 | done |
+| e-167 | done |
