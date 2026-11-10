@@ -12,3 +12,8 @@
 | e-82 | done |
 | e-112 | done |
 | e-162 | done |
+| e-3 | done |
+| e-53 | done |
+| e-83 | done |
+| e-113 | done |
+| e-163 | done |
