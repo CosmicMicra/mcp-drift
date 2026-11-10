@@ -1,3 +1,6 @@
 data/snapshots/
+data/snapshots_v1/
+data/agent_exec_code/
+data/events.jsonl
 data/*.log
 __pycache__/
