@@ -1,0 +1,87 @@
+{
+  "servers": 2571,
+  "versions": 35725,
+  "median_versions": 8,
+  "servers_with_DESC_MUTATION": 1687,
+  "pct_servers_with_DESC_MUTATION": 65.6,
+  "servers_with_TOOL_ADDED": 1814,
+  "pct_servers_with_TOOL_ADDED": 70.6,
+  "servers_with_TOOL_CAP_GAIN": 665,
+  "pct_servers_with_TOOL_CAP_GAIN": 25.9,
+  "servers_with_silent_gain": 510,
+  "pct_servers_with_silent_gain": 19.8,
+  "servers_with_silent_high_risk_gain": 401,
+  "pct_servers_with_silent_high_risk_gain": 15.6,
+  "servers_with_silent_direct_high_risk_gain": 53,
+  "pct_servers_with_silent_direct_high_risk_gain": 2.1,
+  "servers_with_SERVER_CAP_GAIN": 1154,
+  "pct_servers_with_SERVER_CAP_GAIN": 44.9,
+  "servers_with_silent_server_gain": 121,
+  "pct_servers_with_silent_server_gain": 4.7,
+  "servers_with_silent_server_high_risk_gain": 92,
+  "pct_servers_with_silent_server_high_risk_gain": 3.6,
+  "servers_with_DESC_SUSPICIOUS": 209,
+  "pct_servers_with_DESC_SUSPICIOUS": 8.1,
+  "servers_with_NEW_DOMAIN": 1398,
+  "pct_servers_with_NEW_DOMAIN": 54.4,
+  "by_capability": {
+    "shell": {
+      "any_servers": 139,
+      "silent_servers": 107
+    },
+    "dynamic_code": {
+      "any_servers": 40,
+      "silent_servers": 29
+    },
+    "fs_write": {
+      "any_servers": 277,
+      "silent_servers": 203
+    },
+    "env_secrets": {
+      "any_servers": 357,
+      "silent_servers": 282
+    },
+    "fs_read": {
+      "any_servers": 328,
+      "silent_servers": 237
+    },
+    "network": {
+      "any_servers": 246,
+      "silent_servers": 175
+    }
+  },
+  "policies": {
+    "Every update": {
+      "median_per_year": 15.668774842355408,
+      "mean_per_year": 26.495302560933727,
+      "coverage": 1.0
+    },
+    "Description changed or tool added": {
+      "median_per_year": 4.147936987046438,
+      "mean_per_year": 8.324238533760647,
+      "coverage": 0.6728571428571428
+    },
+    "Any tool's description changed": {
+      "median_per_year": 2.388302181042936,
+      "mean_per_year": 5.603483959613345,
+      "coverage": 0.5257142857142857
+    },
+    "Changed tool's own description": {
+      "median_per_year": 2.388302181042936,
+      "mean_per_year": 5.603483959613345,
+      "coverage": 0.0
+    },
+    "Any capability gained": {
+      "median_per_year": 1.366713563318568,
+      "mean_per_year": 2.201610351303822,
+      "coverage": 1.0
+    },
+    "High-risk capability gained": {
+      "median_per_year": 0.7355132549405207,
+      "mean_per_year": 1.6103218853825132,
+      "coverage": 1.0
+    }
+  },
+  "policy_servers": 1667,
+  "policy_target_steps": 700
+}
