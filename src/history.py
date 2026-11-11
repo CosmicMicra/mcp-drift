@@ -35,6 +35,7 @@ MAX_TAG_SNAPSHOTS = 40
 CLONE_TIMEOUT = 240
 MAX_HEAD_FILES = 600
 KEEP_CLONES = os.environ.get("KEEP_CLONES") == "1"
+PIN_DIR = os.environ.get("PIN_DIR")
 
 DEP_FILES = ("package.json", "pyproject.toml", "requirements.txt", "setup.py", "setup.cfg")
 
@@ -204,11 +205,18 @@ def process(rec):
         out.write_text(json.dumps({"repo": rec, "error": "clone_failed"}))
         return name, "clone_failed"
     try:
-        n_head = sum(1 for l in git(repo, "ls-tree", "-r", "--name-only", "HEAD").split("\n") if relevant(l))
-        if n_head > MAX_HEAD_FILES:
-            out.write_text(json.dumps({"repo": rec, "error": "too_large", "n_head_files": n_head}))
-            return name, f"skip large ({n_head} files)"
-        versions = pick_versions(repo)
+        pinned = None
+        if PIN_DIR:  # reuse the exact versions sampled in an earlier run (keeps the study population fixed)
+            prev = Path(PIN_DIR) / out.name
+            if prev.exists():
+                pinned = [{k: s[k] for k in ("commit", "time", "tag")}
+                          for s in json.loads(prev.read_text()).get("snapshots", [])] or None
+        if pinned is None:
+            n_head = sum(1 for l in git(repo, "ls-tree", "-r", "--name-only", "HEAD").split("\n") if relevant(l))
+            if n_head > MAX_HEAD_FILES:
+                out.write_text(json.dumps({"repo": rec, "error": "too_large", "n_head_files": n_head}))
+                return name, f"skip large ({n_head} files)"
+        versions = pinned or pick_versions(repo)
         snaps = [snapshot(repo, v) for v in versions]
     except Exception as e:  # keep going on odd repos
         out.write_text(json.dumps({"repo": rec, "error": f"{type(e).__name__}: {e}"}))
