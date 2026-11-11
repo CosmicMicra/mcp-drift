@@ -156,9 +156,15 @@ def pct(a, b):
     return f"{a}/{b} ({100 * a / b:.1f}%)" if b else "0/0"
 
 
+POP = ROOT / "data" / "population.txt"   # fixed study population (registered: 2,571 servers)
+
+
 def main():
     summaries, all_events, status = [], [], Counter()
+    pop = set(POP.read_text().split()) if POP.exists() else None
     for d in load():
+        if pop is not None and d.get("repo", {}).get("full_name") not in pop:
+            continue
         if "error" in d:
             status[d["error"]] += 1
             continue
