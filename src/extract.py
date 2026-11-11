@@ -58,8 +58,8 @@ CAPS = {
         r"\.ssh/", r"\.aws/credentials", r"\bid_rsa\b", r"\.npmrc\b", r"\.netrc\b",
     ],
     "dynamic_code": [
-        r"(?<![\w.])eval\(", r"(?<![\w.])exec\(", r"\bimportlib\.import_module\(",
-        r"\bnew Function\(", r"\bvm\.runIn\w+\(", r"\b__import__\(", r"\bpickle\.loads?\(",
+        r"(?<![\w.])eval\(", r"(?<![\w.])exec\(", r"\bimportlib\.import_module\((?!\s*['\"])",
+        r"\bnew Function\(", r"\bvm\.runIn\w+\(", r"\b__import__\((?!\s*['\"])", r"\bpickle\.loads?\(",
     ],
 }
 CAP_RE = {k: re.compile("|".join(v)) for k, v in CAPS.items()}
@@ -68,8 +68,29 @@ IGNORE_DOMAINS = ("example.com", "example.org", "localhost", "127.0.0.1", "schem
                   "www.w3.org", "json-schema.org", "github.com", "modelcontextprotocol.io")
 
 
+# String literals and comments. Short strings (e.g. file modes like "w") are kept so that
+# open(path, "w") is still recognised; long strings (scripts, help text, prompts) are blanked.
+_STR_OR_COMMENT = re.compile(
+    r'''("""[\s\S]*?"""|\'\'\'[\s\S]*?\'\'\'|`(?:\\.|[^`\\])*`|"(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*'|/\*[\s\S]*?\*/|//[^\n]*|\#[^\n]*)''')
+# Sensitive credential paths only ever appear inside strings, so they are matched on the raw text.
+_SENSITIVE_PATH = re.compile(r"\.ssh/|\.aws/credentials|\bid_rsa\b|\.npmrc\b|\.netrc\b")
+
+
+def _strip_code(text):
+    def repl(m):
+        t = m.group(0)
+        if t.startswith(("//", "/*", "#")):
+            return " "
+        return t if len(t) <= 12 else t[0] + t[0]
+    return _STR_OR_COMMENT.sub(repl, text)
+
+
 def capabilities(text):
-    return sorted(k for k, rx in CAP_RE.items() if rx.search(text))
+    code = _strip_code(text)
+    caps = {k for k, rx in CAP_RE.items() if rx.search(code)}
+    if _SENSITIVE_PATH.search(text):
+        caps.add("env_secrets")
+    return sorted(caps)
 
 
 def domains(text):
@@ -434,7 +455,11 @@ PY_EXT = (".py",)
 TS_EXT = (".ts", ".mts", ".cts", ".js", ".mjs", ".cjs", ".tsx", ".jsx")
 SKIP_PARTS = {"node_modules", "test", "tests", "__tests__", "spec", "examples", "example",
               "dist", "build", "out", ".venv", "venv", "vendor", "docs", "scripts", "benchmarks",
-              "fixtures", "__pycache__", "site-packages", "coverage"}
+              "fixtures", "__pycache__", "site-packages", "coverage", "e2e", "bench", "eval", "evals",
+              "__mocks__", "mocks"}
+BUILD_FILES = {"setup.py", "conftest.py", "noxfile.py", "fabfile.py", "gulpfile.js", "gruntfile.js",
+               "jest.config.js", "webpack.config.js", "rollup.config.js", "tsup.config.ts", "vite.config.ts",
+               "vitest.config.ts", "eslint.config.js", "babel.config.js", ".eslintrc.js", "prettier.config.js"}
 
 
 def relevant(path):
@@ -442,15 +467,50 @@ def relevant(path):
     parts = set(p.split("/")[:-1])
     if parts & SKIP_PARTS:
         return False
+    base = p.split("/")[-1]
     if p.endswith((".d.ts", ".min.js", ".test.ts", ".spec.ts", ".test.js", ".spec.js", "_test.py")) \
-            or p.split("/")[-1].startswith("test_"):
+            or base.startswith("test_") or base in BUILD_FILES or re.search(r"\.config\.[cm]?[jt]s$", base):
         return False
     return p.endswith(PY_EXT + TS_EXT)
 
 
+# A call we follow: a bare call f(...) or self./this./cls. method call. Calls on other objects
+# (client.execute(...), db.run(...)) are not followed: their target is unknown statically.
+RESOLVE_RE = re.compile(r"(?:(?<![\w.$])|(?<=\bself\.)|(?<=\bthis\.)|(?<=\bcls\.))([A-Za-z_$][\w$]*)\s*\(")
+# Names too generic to resolve by name alone.
+GENERIC_NAMES = {"run", "execute", "exec", "call", "handle", "handler", "main", "init", "start", "stop", "close",
+                 "open", "read", "write", "send", "get", "set", "update", "create", "delete", "remove", "list",
+                 "load", "save", "parse", "process", "request", "fetch", "invoke", "apply", "next", "resolve",
+                 "reject", "emit", "log", "error", "warn", "info", "debug", "abort", "cancel", "wait", "connect",
+                 "query", "search", "build", "render", "format", "validate", "check", "track", "version", "help"}
+
+
+def _pick_definition(defs, tool_file):
+    """Resolve a helper name to one definition: unique name, else the one in the tool's own file,
+    else the single one in the tool's package (longest shared directory prefix). Ambiguous -> None."""
+    if not defs:
+        return None
+    if len(defs) == 1:
+        return defs[0][1]
+    same = [b for f, b in defs if f == tool_file]
+    if len(same) == 1:
+        return same[0]
+    tparts = tool_file.split("/")[:-1]
+    def shared(f):
+        n = 0
+        for a, b in zip(f.split("/")[:-1], tparts):
+            if a != b:
+                break
+            n += 1
+        return n
+    best = max(shared(f) for f, _ in defs)
+    cands = [b for f, b in defs if shared(f) == best]
+    return cands[0] if best > 0 and len(cands) == 1 else None
+
+
 def analyze_tree(files):
     """files: dict path -> text. Returns (tools, server_caps, server_domains)."""
-    all_tools, all_funcs, server_text = [], {}, []
+    all_tools, all_funcs, server_text, def_count, defs_by_name = [], {}, [], {}, {}
     for path, text in files.items():
         if len(text) > 400_000:
             continue
@@ -466,17 +526,23 @@ def analyze_tree(files):
         all_tools += tools
         for k, v in funcs.items():
             all_funcs.setdefault(k, v)
+            def_count[k] = def_count.get(k, 0) + 1
+            defs_by_name.setdefault(k, []).append((path, v))
         server_text.append(text)
     for t in all_tools:
         parts, seen, frontier = [("self", t._body)], set(), [t._body]
         for _ in range(4):
             nxt = []
             for b in frontier:
-                for c in CALL_RE.findall(b):
-                    if c in all_funcs and c not in seen and len(seen) < 150:
-                        seen.add(c)
-                        parts.append((c, all_funcs[c]))
-                        nxt.append(all_funcs[c])
+                for c in RESOLVE_RE.findall(_strip_code(b)):   # calls in code only, not in strings/comments
+                    if c in seen or len(seen) >= 150 or c in GENERIC_NAMES:
+                        continue
+                    body = _pick_definition(defs_by_name.get(c, []), t.file)
+                    if body is None:
+                        continue
+                    seen.add(c)
+                    parts.append((c, body))
+                    nxt.append(body)
             frontier = nxt
         full = "\n".join(b for _, b in parts)
         t.caps, t.domains = capabilities(full), domains(full)
