@@ -77,6 +77,30 @@ Method/ethics: Paxson, sound Internet measurement (IMC 2004); Menlo Report; Cohe
 - Present tense for findings ("servers change"), past tense for what we did ("we cloned").
 - Anonymity: no names, no Rapticore, no GitHub username; cite own work in third person; artifact via Anonymous GitHub.
 
+## 6b. Sound human and sharp (assume a strict, well-prompted AI reviewer)
+What makes text read as machine-written, and what we do instead:
+| Avoid | Do instead |
+|---|---|
+| "plays a crucial role", "in today's rapidly evolving landscape", "it is worth noting", "delve", "leverage", "robust", "seamless", "comprehensive", "pivotal", "underscore" | Say the thing. "Agents now send email and run shell commands on users' behalf." |
+| Every paragraph = claim + three bullet points + summary | Prose with one point per paragraph; bullets only for genuine lists |
+| Lists of exactly three adjectives or examples | As many as the evidence has |
+| "Not only X, but also Y"; "X, not Y"; em-dash asides; colon reveals | Two plain sentences |
+| Claims without numbers ("many servers", "significant") | "1,687 of 2,571 servers (65.6%)" |
+| Hedging everything / overclaiming everything | Hedge exactly where the evidence is weak, and say why |
+| Generic examples ("e.g., a malicious tool") | Real ones from our data (ctx_upgrade, query_graph, sidecar) with file-level detail |
+| Summaries that repeat the section | End with one boxed Finding that adds the "so what" |
+| Perfect symmetry and smooth transitions everywhere | Vary sentence length; short sentences for key results |
+
+What a strict reviewer model also checks, so we make it easy to verify:
+- every abstract claim has a section, number, and figure behind it;
+- the method is reproducible from the text alone (thresholds, sample sizes, versions, dates);
+- limitations are specific (what we cannot see and how it biases the numbers), not generic;
+- related work is cited precisely and fairly, with the exact difference stated;
+- no claim stronger than the data (static analysis shows a path exists, not that it ran).
+
+Process: Claude drafts each section; Soniya rewrites it in her own words and cuts anything she
+cannot explain or defend aloud. Final read-aloud pass before submission.
+
 ## 7. Writing order
 1. Methodology (stable now) → 2. Results RQ1–RQ4 as numbers freeze → 3. Case studies → 4. Discussion →
 5. Introduction (written last, from the findings) → 6. Related work → 7. Appendix → 8. Proofread against the abstract
