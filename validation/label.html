@@ -91,6 +91,7 @@ textarea { min-height: 56px; resize: vertical; }
   </header>
 
   <div id="banner" class="banner" hidden></div>
+  <div class="milestone">Round 2 (blind): label from the facts file and the code only. No AI chat while labelling. Open the observations file only after you have chosen a label.</div>
 
   <details class="guide" id="guide" open>
     <summary>What is labelling, and how do I do it? (read once, 3 minutes)</summary>
@@ -169,7 +170,7 @@ let tab = "events";
 const idx = { events: 0, tools: 0 };
 const labels = {};            // docId -> body
 let db = null, canWrite = true;
-const local = (() => { try { return JSON.parse(localStorage.getItem("mcp-labels") || "{}"); } catch (e) { return {}; } })();
+const local = (() => { try { return JSON.parse(localStorage.getItem("mcp-labels-v2") || "{}"); } catch (e) { return {}; } })();
 Object.assign(labels, local);
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -271,12 +272,12 @@ function save(patch, advance, quiet) {
   const it = list()[idx[tab]], id = docId(tab, it);
   const body = { ...(labels[id] || {}), ...patch, kind: tab, row: it.id, repo: it.repo, tool: it.tool, at: new Date().toISOString() };
   labels[id] = body;
-  try { localStorage.setItem("mcp-labels", JSON.stringify(labels)); } catch (e) {}
+  try { localStorage.setItem("mcp-labels-v2", JSON.stringify(labels)); } catch (e) {}
   if (advance && idx[tab] < list().length - 1) idx[tab]++;
   if (!quiet) render();
   if (!db || !canWrite) { setSave(db ? "Saved in this browser only (no permission to save online)" : "Saved in this browser only", "bad"); return; }
   setSave("Saving…");
-  writing = writing.then(() => db.collection("labels").doc(id).set(body)).then(
+  writing = writing.then(() => db.collection("labels_v2").doc(id).set(body)).then(
     () => setSave("All changes saved", "ok"),
     (e) => { if (e && e.code === "invalid_argument") canWrite = false; setSave("Couldn't save online: " + (e && e.message || "error") + ". Kept in this browser.", "bad"); });
 }
@@ -322,13 +323,13 @@ $("copy").onclick = async () => {
   if (!db) { setSave("Saved in this browser only", "bad"); const b = $("banner"); b.hidden = false; b.textContent = "Online saving isn't available in this view, so answers stay in this browser. Open the page from claude.ai while signed in so Claude can read your labels."; return; }
   try { const u = await window.claude.use("user"); const w = u && await u.can("data.write"); if (w === false) canWrite = false; } catch (e) {}
   const timer = setTimeout(() => setSave("Can't reach saved labels yet; new answers are kept in this browser", "bad"), 10000);
-  db.collection("labels").onSnapshot((snap) => {
+  db.collection("labels_v2").onSnapshot((snap) => {
     if (!snap.metadata.fromCache) clearTimeout(timer);
     snap.docs.forEach((d) => { const v = d.data(); if (v) labels[d.id] = { ...(labels[d.id] || {}), ...v }; });
     // push any labels made offline that the store lacks
     if (!snap.metadata.fromCache && canWrite) {
       const have = new Set(snap.docs.map((d) => d.id));
-      Object.keys(labels).filter((k) => !have.has(k)).forEach((k) => { writing = writing.then(() => db.collection("labels").doc(k).set(labels[k])).catch(() => {}); });
+      Object.keys(labels).filter((k) => !have.has(k)).forEach((k) => { writing = writing.then(() => db.collection("labels_v2").doc(k).set(labels[k])).catch(() => {}); });
     }
     const focused = document.activeElement && document.activeElement.matches("textarea, input");
     if (!focused) render();
