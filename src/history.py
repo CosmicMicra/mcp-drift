@@ -32,7 +32,7 @@ OUT = ROOT / "data" / "snapshots"
 CLONES = Path(os.environ.get("CLONE_DIR", "/home/user/clones"))
 MAX_SNAPSHOTS = 12
 MAX_TAG_SNAPSHOTS = 40
-CLONE_TIMEOUT = 240
+CLONE_TIMEOUT = int(os.environ.get("CLONE_TIMEOUT", "240"))
 MAX_HEAD_FILES = 600
 KEEP_CLONES = os.environ.get("KEEP_CLONES") == "1"
 PIN_DIR = os.environ.get("PIN_DIR")

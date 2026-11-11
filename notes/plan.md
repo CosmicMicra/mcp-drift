@@ -79,3 +79,20 @@ without calling a model provider." Handler -> queryGraphVault -> ensureCompiledG
 is missing it calls compileVault(), which gets getProviderForTask("compileProvider") and analyses sources lacking
 analyses. With a remote provider configured, a "no provider" lookup can send document text to that provider.
 Not observed live; code path only. Description-code mismatch in a newly added tool (DCI-style), not post-approval drift.
+
+## Extractor v3 results (Nov 11; final population, pinned versions)
+Population fixed to the registered 2,571 servers / 35,725 sampled versions (PIN_DIR re-extraction of the same
+commits; 7 repos deleted after collection keep their first-run extraction, see data/deleted_repos.txt).
+4 servers have no comparable tools under v3: their only "tools" were eval/bench fixtures -> 2,567 servers yield events.
+| Measure (share of servers) | v2 | v3 |
+|---|---|---|
+| any tool capability gain | 25.9% | 19.5% |
+| silent tool capability gain | 19.8% | 13.9% |
+| silent high-risk tool gain | 15.6% | 11.0% |
+| silent high-risk gain in tool's own handler | 2.1% | 2.1% |
+| tool description changed | 65.6% | 65.7% |
+| silent server-level high-risk gain | 3.6% | 3.5% |
+| dynamic_code gain events | 845 | 37 |
+Policy simulation (median prompts/server/year): every update 15.7; desc or new tool 4.1; any description 2.4;
+any capability 1.2; high-risk capability 0.6. Per-tool description rule surfaces 0% of silent high-risk gains;
+server-wide description rule surfaces 54% by coincidence. Coverage axis still circular -> replace with human labels.
