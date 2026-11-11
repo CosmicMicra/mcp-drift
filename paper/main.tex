@@ -1,0 +1,43 @@
+\documentclass[conference,compsoc]{IEEEtran}
+% IEEE S&P 2027: US Letter, compsoc, 13 pages + 5 pages refs/appendix, anonymous.
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tcolorbox}
+
+% Boxed findings at the end of each results section
+\newtcolorbox{finding}[1]{colback=gray!8,colframe=gray!60,boxrule=0.4pt,arc=1pt,
+  left=3pt,right=3pt,top=2pt,bottom=2pt,fonttitle=\bfseries\small,title={Finding #1}}
+% Working notes; remove before submission (grep for \todo)
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+\begin{document}
+\title{Your MCP Server Changed and Didn't Tell You:\\Measuring Post-Approval Drift}
+\author{\IEEEauthorblockN{Anonymous Submission \#2511}}
+\maketitle
+
+\begin{abstract}
+\input{sections/00-abstract}
+\end{abstract}
+
+\input{sections/01-introduction}
+\input{sections/02-background}
+\input{sections/03-method}
+\input{sections/04-rq1-prevalence}
+\input{sections/05-rq2-visibility}
+\input{sections/06-rq3-validation}
+\input{sections/07-case-studies}
+\input{sections/08-rq4-policies}
+\input{sections/09-discussion}
+\input{sections/10-related}
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\appendices
+\input{sections/A-appendix}
+\end{document}
