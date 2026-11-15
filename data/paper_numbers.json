@@ -50,6 +50,38 @@
       "silent_servers": 81
     }
   },
+  "disclosure_by_capability": {
+    "shell": {
+      "silent": 551,
+      "undisclosed": 72,
+      "disclosed": 4
+    },
+    "dynamic_code": {
+      "silent": 34,
+      "undisclosed": 3,
+      "disclosed": 0
+    },
+    "fs_write": {
+      "undisclosed": 179,
+      "silent": 402,
+      "disclosed": 25
+    },
+    "env_secrets": {
+      "silent": 1923,
+      "undisclosed": 465,
+      "disclosed": 51
+    },
+    "fs_read": {
+      "silent": 690,
+      "undisclosed": 232,
+      "disclosed": 37
+    },
+    "network": {
+      "disclosed": 51,
+      "undisclosed": 192,
+      "silent": 644
+    }
+  },
   "policies": {
     "Every update": {
       "median_per_year": 15.668774842355408,

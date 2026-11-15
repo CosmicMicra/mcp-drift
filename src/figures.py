@@ -74,6 +74,44 @@ def prevalence(ev, summ):
     return {c: {"any_servers": len(any_g[c]), "silent_servers": len(silent_g[c])} for c in CAP_LABEL}
 
 
+def disclosure(ev):
+    """Share of tool-level capability gains that are silent / come with an unrelated description
+    change / are mentioned in the new description, per capability class (runtime descriptions excluded)."""
+    AQUA = "#1baf7a"
+    cnt = defaultdict(lambda: defaultdict(int))
+    for e in ev:
+        if e["type"] == "TOOL_CAP_GAIN" and e["disclosure"] != "unknown":
+            cnt[e["cap"]][e["disclosure"]] += 1
+    order = sorted(CAP_LABEL, key=lambda c: sum(cnt[c].values()))
+    fig, ax = plt.subplots(figsize=(3.4, 2.5))
+    cats = [("silent", "Description unchanged", ORANGE, "////"),
+            ("undisclosed", "Changed, gain not mentioned", BLUE, ""),
+            ("disclosed", "Gain mentioned", AQUA, "")]
+    for i, c in enumerate(order):
+        tot = sum(cnt[c].values()) or 1
+        left = 0
+        for key, lab, col, hat in cats:
+            w = 100 * cnt[c][key] / tot
+            ax.barh(i, w, left=left, height=0.62, color=col, hatch=hat, edgecolor="white", linewidth=0.8,
+                    label=lab if i == 0 else None)
+            if key == "silent":
+                ax.text(w - 2, i, f"{w:.0f}%", va="center", ha="right", fontsize=6.5, color=INK,
+                        bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor="none"))
+            left += w
+        ax.text(101, i, f"n={tot:,}", va="center", fontsize=6.3, color=MUTED)
+    ax.set_yticks(range(len(order)), [CAP_LABEL[c] for c in order])
+    ax.set_xlim(0, 100)
+    ax.set_xlabel("Share of capability gains in existing tools (%)")
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+    ax.legend(loc="lower center", bbox_to_anchor=(0.38, 1.0), ncol=2, frameon=False, handlelength=1.1,
+              columnspacing=0.8, fontsize=6.3)
+    fig.tight_layout(pad=0.3)
+    fig.savefig(FIG / "fig_disclosure.pdf")
+    plt.close(fig)
+    return {c: dict(cnt[c]) for c in CAP_LABEL}
+
+
 def policies(ev, summ):
     """Prompts per server-year under each re-approval rule, and the share of
     silent high-risk tool gains each rule would surface (proxy until human labels are in)."""
@@ -161,6 +199,7 @@ def main():
         nums[f"servers_with_{key}"] = c
         nums[f"pct_servers_with_{key}"] = round(100 * c / n, 1)
     nums["by_capability"] = prevalence(ev, summ)
+    nums["disclosure_by_capability"] = disclosure(ev)
     pol, n_elig, n_target = policies(ev, summ)
     nums["policies"] = pol
     nums["policy_servers"] = n_elig

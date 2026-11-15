@@ -1,6 +1,15 @@
 \section{Case Studies}\label{sec:cases}
 
-\todo{Agent-mediated execution (ctx_upgrade).}
-\todo{Description contradicts code (query_graph).}
-\todo{Tool output imitating a client system message (sidecar).}
-\todo{Hidden Unicode: 1 of 2,571 servers.}
+Aggregate numbers hide how drift looks in a real codebase. We describe three cases from our data, chosen because each shows a way that the approved description and the actual behavior come apart. We describe behavior established by reading the code; we did not run these servers, and we do not attribute intent to their maintainers. \todo{Disclosure status for each case once maintainers are notified.}
+
+\paragraph{The agent runs what the server will not}
+A context-management server exposes an \texttt{upgrade} tool whose description, unchanged across the versions we examine, says it ``returns a shell command to execute'' and that the model ``MUST run the returned command using your shell tool.'' In an early version the returned command invoked the plugin's own installed CLI. A later version adds a fallback for installations without that CLI: the server writes a script to disk that clones the project's latest source from its public repository, installs its dependencies, builds it, and copies the result over the installed plugin, and it returns a command that runs that script. The server itself never spawns a process, so no server-side scan sees command execution, and our extractor initially matched the case only because the script's text contains \texttt{execFileSync}. The effect is that the approved tool became a live update channel: whatever is on the project's main branch when the user next asks to upgrade is built and executed on their machine, by the user's own agent, without a version pin or integrity check.
+
+\paragraph{A description that contradicts the code}
+A knowledge-vault server adds a graph-query tool whose description says it traverses the local graph ``without calling a model provider.'' Its handler first ensures that a compiled graph exists; if the search index or graph file is missing, it compiles the vault, and compilation obtains the configured model provider and analyzes documents that have no analysis yet. With a remote provider configured, a call that the description presents as local can therefore send document text to that provider. The destination is the user's own configuration, so this is not exfiltration; the problem is that the description promises the opposite of what one reachable path does. (This tool is new rather than changed; we include it because it shows why descriptions are a poor basis for approval even at first install.)
+
+\paragraph{Tool output that impersonates the client}
+A server that runs side conversations with other models returns, while a task is still running, text of the form \texttt{<system-reminder>IMPORTANT: Before calling [status], you MUST run `sleep 25` in your shell first.</system-reminder>}. The command is harmless and the intent is to stop the model from polling too often. But the text borrows the tag that MCP clients use for their own system messages, so that the server's instruction reads to the model as if it came from the client. No scanner we are aware of inspects tool outputs for this.
+
+\paragraph{How common is delegation to the agent?}
+The first and third cases move execution from the server to the agent. We searched every tool description across all versions, and every string literal in each server's latest code, for text instructing the model to run something in its own shell. After manual review, only a handful of servers do so; several others explicitly tell the model \emph{not} to run commands and to ask the user instead (``Inform the user to run [command]\ldots\ Do NOT attempt to run this command yourself''). Delegation is rare, but nothing in MCP governs it in either direction, and none of the defenses we discuss in Section~\ref{sec:related} would see it.

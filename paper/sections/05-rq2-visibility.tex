@@ -1,4 +1,25 @@
 \section{RQ2: Can Users See the Change?}\label{sec:rq2}
 
-\todo{Silent / vague / specific disclosure per capability (Fig. 4).}
-\todo{MCP annotations (readOnlyHint, destructiveHint) vs code over time.}
+An approval is informed only if a change that matters shows up somewhere the user or client looks. In MCP, the place that matters is the tool description: it is what the model reads and what clients display. We therefore ask, for each capability gain, whether the gaining tool's description changed in the same release and whether the new text mentions the capability.
+
+\paragraph{Tool descriptions}
+Figure~\ref{fig:disclosure} shows the result. Of the 5,740 tool-level capability gains, 4,244 (73.9\%) happen while the tool's description stays byte-identical. In 1,143 (19.9\%) the description changes but says nothing about the new capability, and in only 168 (2.9\%) does the new text mention it.\footnote{The remaining 185 gains belong to tools whose descriptions are computed at run time and cannot be compared.} For high-risk classes (running commands, dynamic code, writing files, and reading secrets) the picture is the same: of 3,821 gains, 2,910 (76.2\%) are silent, 719 (18.8\%) come with an unrelated description change, and 80 (2.1\%) are disclosed. Our test for ``mentions the capability'' is a permissive keyword match, so 2.1\% is if anything an overestimate.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_disclosure.pdf}
+\caption{How capability gains in existing tools appear in the tool's description, by capability class. Gains in tools with run-time descriptions are excluded.}
+\label{fig:disclosure}
+\end{figure}
+
+In terms of servers, 356 (13.9\%) have at least one silent capability gain and 282 (11.0\%) a silent high-risk gain. For 53 servers (2.1\%) the silent high-risk gain sits in the tool's own handler rather than in a helper it calls, which our validation finds to be the most reliable signal (Section~\ref{sec:rq3}).
+
+\paragraph{Anything visible at all}
+A user might notice a change elsewhere: a new tool, an edited description of another tool, or a changed README. We call a server-level capability gain \emph{fully silent} if none of these happens in the same release. 123 servers (4.8\%) have at least one fully silent gain, and 90 (3.5\%) a fully silent high-risk gain: the code can do something new and dangerous, and nothing a user could read has changed.
+
+\paragraph{Instruction-like text}
+Prior attacks hide instructions in descriptions, for example with invisible Unicode tag characters~\cite{unicodetag2026}. We searched every description change for such content. 209 servers (8.1\%) add text that matches at least one instruction-like pattern. We read every match for concealment or hidden characters (14 servers) and the description changes in our validation sample; all were ordinary usage directions to the model (``call \texttt{search} first; do not list every item''), not hidden instructions. A single server, out of 2,571, added a zero-width character, and it was harmless. Hidden description text is not how real servers change; code is.
+
+\begin{finding}{2}
+Users cannot see most changes. Three in four capability gains leave the tool's description untouched, and only about 2\% of high-risk gains are mentioned in the text users approved.
+\end{finding}
