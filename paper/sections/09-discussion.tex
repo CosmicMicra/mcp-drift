@@ -1,6 +1,16 @@
 \section{Discussion}\label{sec:discussion}
 
-\todo{Recommendations: clients, MCP specification, developers, registries.}
-\todo{Same capability, new use (data destinations).}
-\todo{Limitations and threats to validity.}
-\todo{Future work.}
+\paragraph{Recommendations for clients}
+Our results argue against both extremes clients could adopt. Approval should attach to what a tool can do, not to what it says. A client can compute a capability summary for each installed version, statically as we do or from a manifest the server must declare and the client verifies, and re-ask only when a high-risk capability is added. In our replay that rule prompts well under once per server per year. Clients should show the user what changed (``this tool can now run commands'') rather than a generic notice, and should treat changes to tool \emph{outputs} that instruct the model to act as part of the tool's behavior.
+
+\paragraph{Recommendations for the protocol}
+MCP annotations already let a server declare that a tool is read-only or non-destructive, but the declaration is self-reported and nothing ties it to the code or checks it across versions. \todo{Annotation-vs-code finding from RQ2.} The specification could make capability declarations mandatory for tools that touch the file system, processes, credentials, or the network, version them, and require clients to re-prompt when they grow. It should also state whether a server may instruct the agent to execute commands on its behalf; today some servers do and others explicitly forbid it.
+
+\paragraph{Capabilities are not enough}
+The email incident that motivates this work involved no new capability: the tool already sent email and simply sent it to one more address. Capability-based approval would not have caught it. Catching it requires describing where data may go (``only to recipients the user specified''), which our static analysis approximates only through new external hostnames. Data-destination declarations are a natural next step.
+
+\paragraph{Limitations}
+Static analysis establishes that a path exists, not that it runs, and it misses capabilities hidden in dependencies, downloaded at run time, or reached through dynamic dispatch; our capability counts are therefore lower bounds against an adversary who wants to hide. Our first extractor was imprecise in ways our validation exposed, and the corrected version removed about half of its flags; we report precision after correction (Section~\ref{sec:rq3}), but we cannot measure recall from flagged items alone. We study git histories, while users install packages from registries that may differ. Sampling releases understates change frequency. Our population is limited to popular open-source servers in three languages, and seven of its repositories were deleted during the study.
+
+\paragraph{Future work}
+Comparing published registry packages with their source histories, adding data-flow destinations to the capability model, and measuring how users respond to capability-specific re-prompts are the obvious next steps.

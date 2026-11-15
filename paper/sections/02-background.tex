@@ -1,6 +1,13 @@
 \section{Background and Threat Model}\label{sec:background}
 
-\todo{How MCP tools are exposed: name, description, input schema, annotations.}
-\todo{What clients show at approval and when they re-ask.}
-\todo{Threat model: benign evolution, compromised maintainer, malicious maintainer. Out of scope: agent misalignment.}
-\todo{Definitions box: post-approval drift, capability, silent gain, disclosure, security-relevant.}
+\paragraph{MCP tools}
+An MCP server exposes tools to a client. Each tool has a name, a natural-language description, an input schema, and optional \emph{annotations}: hints such as \texttt{readOnlyHint} and \texttt{destructiveHint} that let a server declare whether a tool only reads or may delete data~\cite{mcpspec}. The model sees the name, description, and schema and decides from them when to call the tool; the code that runs is invisible to it. Clients typically ask the user to approve a server or its tools when they are first added, showing the name and description.
+
+\paragraph{When approval goes stale}
+Servers are installed from package registries or source repositories and updated like any other dependency. An update can change a tool's code, its description, or both. Unless the client re-asks, the user's earlier approval silently extends to the new version. We call the difference between what was approved and what now runs \emph{post-approval drift}.
+
+\paragraph{Threat model}
+We consider three ways drift arises. In \emph{benign evolution}, maintainers add features and refactor; capabilities change without intent to deceive, but the user's approval no longer describes the tool. A \emph{compromised maintainer} account or build pipeline lets an attacker publish an update to an already trusted server. A \emph{malicious maintainer} publishes clean versions to gain trust and then turns, as in the email server incident~\cite{koi2025postmark}. In all three, the user approved an earlier version and the client does not re-ask. Our measurement cannot tell these apart, and we do not try to; it measures how often approvals go stale and whether the change is visible. Attacks on the model itself, such as prompt injection through tool outputs from honest servers, and misbehavior of the agent independent of the server, are out of scope.
+
+\paragraph{Terminology}
+A \emph{capability} is one of six classes of action a tool's code can reach (Section~\ref{sec:caps}). A capability \emph{gain} is a class reachable from a tool in one version but not in the previous one. A gain is \emph{silent} if the tool's description is byte-identical across the two versions, and \emph{high-risk} if it concerns running commands, dynamic code, writing files, or reading secrets. A change is \emph{security-relevant} if a user who approved the earlier version would plausibly want to know about it (Section~\ref{sec:validation}).
