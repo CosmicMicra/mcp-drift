@@ -5,3 +5,4 @@ dat999zx/knowl
 skernelx/MySearch-Proxy
 tathagat22/plumb-mcp
 zycaskevin/Vault-Agent-Memory
+Akunda123/SVIXAGENT

@@ -1,0 +1,3763 @@
+{
+ "summary": {
+  "tools_total_latest": 85526,
+  "servers_with_hints": 526,
+  "tools_with_hints": 16341,
+  "tools_readOnly_true": 8923,
+  "tools_openWorld_false": 4367,
+  "gain_in_annotated_tool": 870,
+  "gain_in_annotated_tool_hints_unchanged": 839,
+  "highrisk_gain_in_annotated_tool": 548,
+  "highrisk_gain_in_annotated_tool_hints_unchanged": 527,
+  "modify_gain_in_readonly_tool": 45,
+  "modify_gain_in_readonly_tool_still_readonly": 43,
+  "tools_contradicted_latest": 404,
+  "servers_contradicted_latest": 51,
+  "tools_contradicted_latest_direct": 53,
+  "stale_tools": 40,
+  "stale_servers": 16,
+  "stale_tools_direct": 4
+ },
+ "stale": [
+  [
+   "dddabtc/winremote-mcp",
+   "Snapshot",
+   "v0.2.0",
+   "v0.4.1",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "dddabtc/winremote-mcp",
+   "AnnotatedSnapshot",
+   "v0.3.0",
+   "v0.4.1",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "Open-Document-Alliance/PDF-Tools",
+   "validate_pdf",
+   "v0.5.1",
+   "v0.9.0",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "Open-Document-Alliance/PDF-Tools",
+   "read_pdf_content",
+   "v0.5.1",
+   "v0.8.6",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   false
+  ],
+  [
+   "GuyMannDude/mnemo-cortex",
+   "read_brain_file",
+   "v4.12.0",
+   "v4.28.1",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "Da7-Tech/mind",
+   "recall",
+   "v7.0.0",
+   "HEAD",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   false
+  ],
+  [
+   "IMNMV/ClaudeR",
+   "get_async_result",
+   "v0.2.1",
+   "v0.3.1",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "IMNMV/ClaudeR",
+   "list_sessions",
+   "v0.2.1",
+   "v0.3.1",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "get_server_permissions",
+   "1.6.0",
+   "1.7.0",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   false
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "get_apex_test_results",
+   "1.6.0",
+   "1.7.0",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   false
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "get_apex_code_coverage",
+   "1.6.0",
+   "1.7.0",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   false
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "health_check",
+   "v1.5.0",
+   "v1.9.0",
+   [
+    "readOnly vs shell"
+   ],
+   true
+  ],
+  [
+   "TencentCloudBase/CloudBase-AI-Toolkit",
+   "envQuery",
+   "v1.8.40",
+   "v2.1.0",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "TencentCloudBase/CloudBase-AI-Toolkit",
+   "queryStorage",
+   "v2.1.0",
+   "v2.19.1",
+   [
+    "readOnly vs fs_write"
+   ],
+   true
+  ],
+  [
+   "taylorwilsdon/google_workspace_mcp",
+   "get_drive_file_download_url",
+   "v1.21.0",
+   "v1.25.1",
+   [
+    "readOnly vs fs_write"
+   ],
+   true
+  ],
+  [
+   "INFOKOM-KI/Wazuh-MCP-Server",
+   "blueteam_investigation_workflow",
+   "1f839e9cbd",
+   "a0487669f8",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "INFOKOM-KI/Wazuh-MCP-Server",
+   "blueteam_playbook_run",
+   "1f839e9cbd",
+   "a0487669f8",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "timothywarner-org/context-engineering",
+   "read_context_entry",
+   "5bde7bc95f",
+   "6f9878e76f",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "timothywarner-org/context-engineering",
+   "list_context_entries",
+   "5bde7bc95f",
+   "6f9878e76f",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "timothywarner-org/context-engineering",
+   "search_context_entries",
+   "5bde7bc95f",
+   "6f9878e76f",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "ping_group",
+   "v2.2.1",
+   "v3.0.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "ping_all",
+   "v2.2.1",
+   "v3.0.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "generate_wdio_config",
+   "v0.8.2",
+   "v0.15.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "list_url_schemes",
+   "v0.8.2",
+   "v0.15.0",
+   [
+    "readOnly vs shell"
+   ],
+   true
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "get_native_logs",
+   "v0.8.2",
+   "v0.15.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "get_screen_orientation",
+   "v0.8.2",
+   "v0.15.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "get_app_directories",
+   "v0.9.0",
+   "v0.15.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "list_directory",
+   "v0.9.0",
+   "v0.15.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "read_file",
+   "v0.9.0",
+   "v0.15.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "get_file_info",
+   "v0.9.0",
+   "v0.15.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "list_permissions",
+   "v0.9.0",
+   "v0.15.0",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "Avinash-jetwani/jevmem",
+   "search_memory",
+   "v0.4.5",
+   "v0.5.0",
+   [
+    "readOnly vs fs_write"
+   ],
+   false
+  ],
+  [
+   "bulutarkan/mac-mcp",
+   "mac_observe",
+   "v2.0.0",
+   "v2.1.6",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   false
+  ],
+  [
+   "bulutarkan/mac-mcp",
+   "ask_choice",
+   "v2.0.0",
+   "v2.1.9-r6",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "bulutarkan/mac-mcp",
+   "ask_confirmation",
+   "v2.0.0",
+   "v2.1.9-r6",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "HarimxChoi/google-surf-mcp",
+   "search",
+   "v0.4.5",
+   "v0.6.4",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "HarimxChoi/google-surf-mcp",
+   "search_parallel",
+   "v0.4.5",
+   "v0.6.4",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "HarimxChoi/google-surf-mcp",
+   "extract",
+   "v0.4.5",
+   "v0.6.4",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "HarimxChoi/google-surf-mcp",
+   "search_extract",
+   "v0.4.5",
+   "v0.6.4",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ],
+  [
+   "HarimxChoi/google-surf-mcp",
+   "health",
+   "v0.4.5",
+   "v0.6.4",
+   [
+    "readOnly vs shell"
+   ],
+   false
+  ]
+ ],
+ "latest_contradictions": [
+  [
+   "dddabtc/winremote-mcp",
+   "Snapshot",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "dddabtc/winremote-mcp",
+   "AnnotatedSnapshot",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "epheterson/applemusic-mcp",
+   "discover",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "epheterson/applemusic-mcp",
+   "catalog",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_usage_report",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_usage_stats",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_download_attachment",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_bills",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_view_bill",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_purchase_orders",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_purchase_order_progress",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_sale_orders",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_sale_quotations",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_stock_bills",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_inventory",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_outsource_orders",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_receipts",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_materials",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_partners",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_validate_bill",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_refresh_metadata",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_user",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_role",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_permission",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_sequence",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_number_rule",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_system_config",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_get_fields",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_pending_approvals",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_workflow_status",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_expense_reimburse",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_loan_balance",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_sales_outstock",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_delivery_notice",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_stock_in",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_fixed_asset",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_asset_card",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_asset_depreciation",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_asset_transfer",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_asset_scrape",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_purchase_requisitions",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_quality_inspections",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_stock_transfer_apply",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_audit_log",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_operation_logs",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_change_log",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_approval_flow",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_permission_changes",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_data_backup",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_purchase_inquiry",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_supplier_quotes",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_misc_movement_detail",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_transfer_pending_detail",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_transfer_apply",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_transfer_direct",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_material_cost",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_material_target_cost",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_cost_calculation",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_cost_centers",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_cost_items",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_product_standard_cost",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_cost_adjustments",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_instant_cost_compare",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_cost_trend",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_finished_product_cost",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_material_cost_usage",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_production_orders",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_production_pick_materials",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_production_stock_in",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_view_production_order",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_mrp_result",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_production_plan",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_production_report",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaHaiLong/KingdeeMCP",
+   "kingdee_query_report",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "designcomputer/mysql_mcp_server",
+   "get_table_sample",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "ykuwai/ppt-mcp",
+   "ppt_get_slide_preview",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "bridge_status",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "chrome_workspace_status",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "chatgpt_extension_status",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "chrome_tabs",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "chrome_snapshot",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "shell_job_status",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "shell_job_list",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "fs_read",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "fs_list",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "fs_stat",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "codex_thread_read",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "codex_thread_list",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "codex_thread_turns_list",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "audit_tail",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "alexanderradahl/mac-developer-bridge",
+   "pty_read",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "WaveSpeedAI/mcp-server",
+   "list_models",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "WaveSpeedAI/mcp-server",
+   "get_model_schema",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "youagainchen/claude-codex-coop",
+   "health_check",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "youagainchen/claude-codex-coop",
+   "get_model_catalog",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "youagainchen/claude-codex-coop",
+   "show_partner_selector",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "youagainchen/claude-codex-coop",
+   "start_consultation",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "youagainchen/claude-codex-coop",
+   "project_status",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "Open-Document-Alliance/PDF-Tools",
+   "validate_pdf",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Open-Document-Alliance/PDF-Tools",
+   "read_pdf_ocr_job",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Open-Document-Alliance/PDF-Tools",
+   "validate_pdf",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Open-Document-Alliance/PDF-Tools",
+   "read_pdf_ocr_job",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "GuyMannDude/mnemo-cortex",
+   "read_brain_file",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "GuyMannDude/mnemo-cortex",
+   "wiki_search",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rasinmuhammed/misata",
+   "validate_yaml",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "with-pebbly/aseprite-ai-artist",
+   "look",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "XiaoPuOuO/openchatx-mcp",
+   "glob",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "XiaoPuOuO/openchatx-mcp",
+   "grep",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "oaslananka/easyeda-mcp-pro",
+   "easyeda_pcb_export_route_context",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "why",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "entity",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "status",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "context",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "suggest_user",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "doctor",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "growth",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "recall",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "why",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "entity",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "status",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "context",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "suggest_user",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "doctor",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "Da7-Tech/mind",
+   "growth",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "MrGo2/icloud-mcp",
+   "list-chats",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "MrGo2/icloud-mcp",
+   "read-messages",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "mcpware/cross-code-organizer",
+   "audit_security",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "DMontgomery40/pentest-mcp",
+   "getRuntimeStatus",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "DMontgomery40/pentest-mcp",
+   "gobuster",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "DMontgomery40/pentest-mcp",
+   "nikto",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "DMontgomery40/pentest-mcp",
+   "subfinderEnum",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "DMontgomery40/pentest-mcp",
+   "httpxProbe",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "DMontgomery40/pentest-mcp",
+   "ffufScan",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "DMontgomery40/pentest-mcp",
+   "nucleiScan",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "DMontgomery40/pentest-mcp",
+   "trafficCapture",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "DMontgomery40/pentest-mcp",
+   "privEscAudit",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "JuanCF/scrcpy-mcp",
+   "version",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "brightdata/brightdata-mcp",
+   "scraping_browser_get_html",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   [
+    "readOnly vs dynamic_code"
+   ]
+  ],
+  [
+   "brightdata/brightdata-mcp",
+   "scraping_browser_get_text",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   [
+    "readOnly vs dynamic_code"
+   ]
+  ],
+  [
+   "Dave-London/Pare",
+   "coverage",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "Dave-London/Pare",
+   "playwright",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "Dave-London/Pare",
+   "run",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "withqwerty/football-docs",
+   "search_papers",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "DmitriyGolub/threejs-devtools-mcp",
+   "texture_preview",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "DmitriyGolub/threejs-devtools-mcp",
+   "scene_export",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "DmitriyGolub/threejs-devtools-mcp",
+   "take_screenshot",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "DmitriyGolub/threejs-devtools-mcp",
+   "annotated_screenshot",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "Daghis/teamcity-mcp",
+   "fetch_build_log",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "Daghis/teamcity-mcp",
+   "download_build_artifact",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Daghis/teamcity-mcp",
+   "download_build_artifacts",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "get_server_permissions",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "get_apex_test_results",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "get_apex_code_coverage",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "apex_log_list",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "apex_get_log",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "list_code_analyzer_rules",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "display_user",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "list_metadata",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "list_metadata_types",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "open",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "get_default_org",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "query_records",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "query_records_to_file",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "open_record",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "search_records",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "sobject_list",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "advancedcommunities/salesforce-mcp-server",
+   "sobject_describe",
+   [
+    "readOnly vs dynamic_code"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "list_backups",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_backup",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "list_restores",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_restore",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "list_backup_locations",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "list_backup_schedules",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "capi_list_clusters",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "capi_get_cluster",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "capi_list_machines",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "capi_get_machine",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "capi_list_machinedeployments",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "capi_list_machinesets",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "capi_list_machinehealthchecks",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "capi_list_clusterclasses",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "capi_get_cluster_kubeconfig",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "list_certs",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_cert",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "list_cert_issuers",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_cert_issuer",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "explain_cert_status",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "list_cert_challenges",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "list_cert_requests",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "cilium_list_policies",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "cilium_get_policy",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "cilium_list_endpoints",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "cilium_list_identities",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "cilium_list_nodes",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "cilium_get_status",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_hubble_flows",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubeconfig_view",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "health_check",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubectl_explain",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_api_resources",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "node_logs",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "node_stats_summary",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "multi_cluster_query",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_idle_resources",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_overprovisioned_resources",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_resource_trends",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "optimize_resource_requests",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "gitops_apps_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "gitops_sources_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_list",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_status",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_history",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_get",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_show",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_search_repo",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_search_hub",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_repo_list",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_lint",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_dependency_list",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "helm_template",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "keda_scaledobjects_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "keda_scaledobject_get",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "keda_scaledjobs_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "keda_triggerauths_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "keda_triggerauth_get",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "istio_virtualservices_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "istio_virtualservice_get",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "istio_destinationrules_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "istio_gateways_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "istio_peerauthentications_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "istio_authorizationpolicies_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "istio_proxy_status",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "istio_analyze",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_list_clusters",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_get_nodes",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_get_kubeconfig",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_export_logs",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_cluster_info",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_node_labels",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_config_show",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_registry_status",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_node_logs",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_node_inspect",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_network_inspect",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_port_mappings",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_cluster_status",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_images_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kind_provider_info",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubevirt_vms_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubevirt_vm_get",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubevirt_vmis_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubevirt_datasources_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubevirt_instancetypes_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubevirt_datavolumes_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "diagnose_network_connectivity",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "check_dns_resolution",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubectl_describe",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "kubectl_generic",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "backup_resource",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "wait_for_condition",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_policy_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_policy_violations",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "explain_policy_denial",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "audit_policies",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_rollouts_list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_rollout",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_rollout_status",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_analysis_runs",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_flagger_canaries",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "get_flagger_canary",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "vind_list_clusters",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "vind_status",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "vind_get_kubeconfig",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "rohitg00/kubectl-mcp-server",
+   "vind_describe",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "bzsasson/screaming-frog-mcp",
+   "sf_check",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "bzsasson/screaming-frog-mcp",
+   "list_crawls",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "TencentCloudBase/CloudBase-AI-Toolkit",
+   "queryStorage",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "Rich627/whatsapp-claude-plugin",
+   "status",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Rich627/whatsapp-claude-plugin",
+   "catch_up",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Rich627/whatsapp-claude-plugin",
+   "list_groups",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Rich627/whatsapp-claude-plugin",
+   "group_roster",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "taylorwilsdon/google_workspace_mcp",
+   "get_drive_file_download_url",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "INFOKOM-KI/Wazuh-MCP-Server",
+   "blueteam_campaign_watch",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "INFOKOM-KI/Wazuh-MCP-Server",
+   "blueteam_investigation_workflow",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "INFOKOM-KI/Wazuh-MCP-Server",
+   "blueteam_playbook_run",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "INFOKOM-KI/Wazuh-MCP-Server",
+   "blueteam_stix_killchain",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "INFOKOM-KI/Wazuh-MCP-Server",
+   "blueteam_check_webshell",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "cache-get-stats",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "cache-get-config",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "persistence-status",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "simctl-list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "simctl-get-details",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "simctl-health-check",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "simctl-get-app-container",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "screenshot",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "simctl-stream-logs",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "simctl-suggest",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "simctl-container",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "xcodebuild-version",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "xcodebuild-list",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "xcodebuild-get-details",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "xcodebuild-showsdks",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "xcodebuild-inspect-scheme",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "conorluddy/xc-mcp",
+   "xcodebuild-validate-capabilities",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "samson-art/transcriptor-mcp",
+   "get_playlist_transcripts",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "1102tools-dev/federal-contracting-mcps",
+   "list_rfo_parts",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "1102tools-dev/federal-contracting-mcps",
+   "get_rfo_part",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "1102tools-dev/federal-contracting-mcps",
+   "list_rfo_agency_deviations",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "1102tools-dev/federal-contracting-mcps",
+   "get_rfo_agency_deviation",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "1102tools-dev/federal-contracting-mcps",
+   "get_rfo_guidance",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "loryanstrant/ESPHome-MCP",
+   "get_device_configuration",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "meskhetian/linkedin-applicants-mcp",
+   "debug_snapshot",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "mksglu/context-mode",
+   "ctx_search",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "mksglu/context-mode",
+   "ctx_stats",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "mksglu/context-mode",
+   "ctx_doctor",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "neverinfamous/memory-journal-mcp",
+   "get_unreleased_commits",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "floriscornel/teams-mcp",
+   "download_chat_hosted_content",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "floriscornel/teams-mcp",
+   "download_message_hosted_content",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "ping_host_by_name",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "ping_group",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "ping_all",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "list_devices",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "list_clients",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "get_network_stats",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "get_device_details",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "bjeans/homelab-mcp",
+   "get_client_details",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "list_url_schemes",
+   [
+    "readOnly vs shell"
+   ],
+   [
+    "readOnly vs shell"
+   ]
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "get_app_directories",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "list_directory",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "read_file",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "get_file_info",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "list_permissions",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "get_native_logs",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "get_screen_orientation",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "steve228uk/metro-mcp",
+   "generate_wdio_config",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "Avinash-jetwani/jevmem",
+   "search_memory",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Avinash-jetwani/jevmem",
+   "list_memory",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "KiaroSama/Telegram-mcp",
+   "secret_chat_status",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_track_count",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_track",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_all_tracks",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_master_track",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "track_fx_get_count",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "track_fx_get_list",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "track_fx_get_name",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "track_fx_get_enabled",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "track_fx_get_num_params",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "track_fx_get_param_name",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "track_fx_get_param",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "take_fx_get_count",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "take_fx_get_list",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "take_fx_get_name",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "take_fx_get_enabled",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "take_fx_get_num_params",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "take_fx_get_param_name",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "take_fx_get_param",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_takes",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_active_take",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_track_num_sends",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_play_state",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_cursor_position",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_project_path",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_project_name",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_tempo",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_time_signature",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_midi_item",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_midi_notes",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_selected_midi_notes",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_track_items",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_item_info",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "measure_loudness",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "measure_spectrum",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_markers",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_regions",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_track_envelope",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_envelope_point_count",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_envelope_points",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_fx_envelope_points",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_undo_state",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_selected_tracks",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_selected_items",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_time_selection",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_track_peak",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_track_peak_hold",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_track_master_send",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_fx_presets",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_fx_preset",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_eq_bands",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_eq_band_enabled",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_track_fx_chunk",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_project_length",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_project_summary",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_play_position",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "TwelveTake-Studios/reaper-mcp",
+   "get_repeat_state",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "Automations-Project/VSCode-Airtable-Formula",
+   "download_formula_field",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "Automations-Project/VSCode-Airtable-Formula",
+   "download_base_formulas",
+   [
+    "readOnly vs fs_write"
+   ],
+   [
+    "readOnly vs fs_write"
+   ]
+  ],
+  [
+   "bulutarkan/mac-mcp",
+   "mac_observe",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "bulutarkan/mac-mcp",
+   "ask_user_voice",
+   [
+    "readOnly vs fs_write,shell"
+   ],
+   []
+  ],
+  [
+   "bulutarkan/mac-mcp",
+   "ask_confirmation",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "HarimxChoi/google-surf-mcp",
+   "health",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "oscardvs/zoteus",
+   "zotero_tag_audit",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "wstierhout/ableton-live-mcp",
+   "analyze_audio_file",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ],
+  [
+   "mobile-next/mobile-mcp",
+   "mobile_take_screenshot",
+   [
+    "readOnly vs fs_write"
+   ],
+   []
+  ],
+  [
+   "wasintoh/line-oa-mcp-ultimate",
+   "line_image_host_status",
+   [
+    "readOnly vs shell"
+   ],
+   []
+  ]
+ ]
+}

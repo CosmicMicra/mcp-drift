@@ -77,8 +77,8 @@
       "disclosed": 37
     },
     "network": {
-      "disclosed": 51,
       "undisclosed": 192,
+      "disclosed": 51,
       "silent": 644
     }
   },
