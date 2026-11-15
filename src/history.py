@@ -234,6 +234,7 @@ def main():
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--min-stars", type=int, default=20)
     ap.add_argument("--shard", default="0/1", help="i/n: process every n-th repo starting at i")
+    ap.add_argument("--only", help="file with one owner/repo per line: process only these")
     a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     recs = [json.loads(l) for l in REPOS.open()]
@@ -242,6 +243,9 @@ def main():
     recs.sort(key=lambda r: -r["stars"])
     if a.limit:
         recs = recs[:a.limit]
+    if a.only:
+        keep = set(Path(a.only).read_text().split())
+        recs = [r for r in recs if r["full_name"] in keep]
     si, sn = map(int, a.shard.split("/"))
     recs = recs[si::sn]
     print(f"processing {len(recs)} repos", flush=True)

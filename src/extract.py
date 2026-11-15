@@ -97,6 +97,14 @@ def domains(text):
     return sorted({d.lower() for d in URL_RE.findall(text) if not d.lower().endswith(IGNORE_DOMAINS)})
 
 
+ANN_RE = re.compile(r"\b(readOnlyHint|destructiveHint|idempotentHint|openWorldHint)\b['\"]?\s*[:=]\s*(true|false|True|False)\b")
+
+
+def _annotations(text):
+    """MCP tool annotation hints written as literals in the registration (TS object or Python kwargs/dict)."""
+    return {k: v.lower() == "true" for k, v in ANN_RE.findall(text or "")}
+
+
 def _h(text):
     return hashlib.sha1(text.encode("utf-8", "ignore")).hexdigest()[:12]
 
@@ -113,6 +121,7 @@ class Tool:
     body_hash: str = ""
     callees: list = field(default_factory=list)  # helper names, resolved repo-wide later
     direct_caps: list = field(default_factory=list)  # caps in the tool's own handler body
+    annotations: dict = field(default_factory=dict)  # MCP annotation hints declared at registration
     caps_via: dict = field(default_factory=dict)  # cap -> "self" or first helper that adds it
 
     def to_dict(self):
@@ -242,6 +251,7 @@ def extract_python(path, text):
                 tools.append(Tool(name, desc.strip(), path, "py", dyn, body_hash=_h(body),
                                   callees=_body_info(body)))
                 tools[-1]._body = body
+                tools[-1].annotations = _annotations(_txt(d, src))
         elif n.type == "call" and (n.child_by_field_name("function") is not None
                                    and _txt(n.child_by_field_name("function"), src).endswith(".add_tool")):
             # FastMCP imperative form: server.add_tool(fn | wrapper(fn), name=?, description=?)
@@ -267,6 +277,7 @@ def extract_python(path, text):
             body = funcs.get(fname, "")
             tools.append(Tool(name, desc.strip(), path, "py", dyn, body_hash=_h(body), callees=_body_info(body)))
             tools[-1]._body = body
+            tools[-1].annotations = _annotations(_txt(n, src))
         elif n.type == "call":
             f = n.child_by_field_name("function")
             if f is None or _txt(f, src).split(".")[-1] != "Tool":
@@ -283,6 +294,7 @@ def extract_python(path, text):
             tools.append(Tool(name, (desc or "").strip(), path, "py", desc is None and "description" in kw,
                               body_hash=_h(body), callees=_body_info(body)))
             tools[-1]._body = body
+            tools[-1].annotations = _annotations(_txt(n, src))
     have = {t.name for t in tools}
     for n in _walk(root):
         if n.type != "dictionary":
@@ -301,6 +313,7 @@ def extract_python(path, text):
             body = funcs.get(name, "") or funcs.get("_" + name, "") or funcs.get("handle_" + name, "")
             t = Tool(name, (desc or "").strip(), path, "py", desc is None, body_hash=_h(body), callees=_body_info(body))
             t._body = body
+            t.annotations = _annotations(_txt(n, src))
             tools.append(t)
             have.add(name)
     for t in tools:
@@ -421,6 +434,7 @@ def extract_ts(path, text):
         body = _txt(n, src)
         t = Tool(name, desc.strip(), path, "ts", dyn, body_hash=_h(body), callees=_body_info(body))
         t._body = body
+        t.annotations = _annotations(_txt(n, src))
         tools.append(t)
     have = {t.name for t in tools}
     if True:
@@ -446,6 +460,7 @@ def extract_ts(path, text):
                         break
             t = Tool(name, (d or "").strip(), path, "ts", d is None, body_hash=_h(body), callees=_body_info(body))
             t._body = body
+            t.annotations = _annotations(_txt(n, src))
             tools.append(t)
     return tools, funcs
 

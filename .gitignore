@@ -5,3 +5,4 @@ data/events.jsonl
 data/*.log
 __pycache__/
 data/snapshots_v2/
+data/snapshots_v3/
