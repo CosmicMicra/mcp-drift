@@ -114,7 +114,7 @@ def disclosure(ev):
 
 def human_targets():
     """(repo, new commit, tool) of each sampled change the author labelled security-relevant (adjudicated)."""
-    lab = json.load(open(ROOT / "validation/labels_v2_adjudicated_2026-11-16.json"))["events"]
+    lab = json.load(open(ROOT / "validation/labels_blind.json"))["events"]
     items = {r["item"]: r for r in csv.DictReader(open(ROOT / "maps/items.csv"))}
     return [(items[i]["repo"], items[i]["new_version"][:10], items[i]["tool"])
             for i, v in lab.items() if v["label"] == "security_relevant"]

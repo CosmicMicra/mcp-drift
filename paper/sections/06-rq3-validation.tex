@@ -6,7 +6,7 @@ The numbers in Sections~\ref{sec:rq1} and~\ref{sec:rq2} count what our extractor
 All 30 sampled tools are genuine MCP tool definitions (precision at least 89\% at 95\% confidence), and 29 of the 30 extracted descriptions match what a client receives; the exception is a description assigned through a variable that our extractor did not resolve. Tool extraction is therefore not a meaningful source of error. Capability attribution is.
 
 \paragraph{Extractor precision}
-Table~\ref{tab:precision} gives the result. Of the 78 events we could decide, 39 (50\%) are real changes: the flagged capability is newly reachable from the tool, or, for the description stratum, the description really changed. Precision depends on where the extractor found the capability. Gains in a tool's own handler are real in 10 of 15 cases (67\%). Gains attributed through a helper function, and gains in other tools, are real in only a third: the extractor follows a call to a function that shares a name with the one actually called, attributes code from a command-line entry point or an evaluation harness to a server tool, or reports a capability that the tool already had and that only moved within the codebase. Server-level gains are real in 7 of 16 cases; the false ones sit in build scripts, browser bundles, or command-line paths that no tool reaches.
+Table~\ref{tab:precision} gives the result. Of the 77 events we could decide, 43 (56\%) are real changes: the flagged capability is newly reachable from the tool, or, for the description stratum, the description really changed. Precision depends on where the extractor found the capability. Gains in a tool's own handler are real in 10 of 15 cases (67\%). Gains attributed through a helper function, and gains in other tools, are real in fewer than half (47\% and 40\%): the extractor follows a call to a function that shares a name with the one actually called, attributes code from a command-line entry point or an evaluation harness to a server tool, or reports a capability that the tool already had and that only moved within the codebase. Server-level gains are real in 8 of 16 cases; the false ones sit in build scripts, browser bundles, or command-line paths that no tool reaches.
 
 \begin{table}[t]
 \centering\small
@@ -16,13 +16,13 @@ Table~\ref{tab:precision} gives the result. Of the 78 events we could decide, 39
 \toprule
 Stratum & Error & Benign & Sec.\ & Unsure & Precision \\
 \midrule
-High-risk, own handler   & 5  & 4  & 6  & 1 & 67\% [42, 85] \\
-High-risk, via helper    & 10 & 4  & 1  & 1 & 33\% [15, 58] \\
-Other capability gain    & 11 & 3  & 2  & 0 & 31\% [14, 56] \\
-Server-level gain        & 9  & 5  & 2  & 0 & 44\% [23, 67] \\
+High-risk, own handler   & 5  & 3  & 7  & 1 & 67\% [42, 85] \\
+High-risk, via helper    & 8  & 6  & 1  & 1 & 47\% [25, 70] \\
+Other capability gain    & 9  & 4  & 2  & 1 & 40\% [20, 64] \\
+Server-level gain        & 8  & 6  & 2  & 0 & 50\% [28, 72] \\
 Description text         & 4  & 11 & 1  & 0 & 75\% [51, 90] \\
 \midrule
-All                      & 39 & 27 & 12 & 2 & 50\% [39, 61] \\
+All                      & 34 & 30 & 13 & 3 & 56\% [45, 66] \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -30,11 +30,11 @@ All                      & 39 & 27 & 12 & 2 & 50\% [39, 61] \\
 These figures bound how far the prevalence numbers can be taken literally. Because precision varies so much by stratum, the most robust count is the one restricted to a tool's own handler: 53 servers (2.1\%) with a silent high-risk gain there (Section~\ref{sec:rq2}). The broader counts are upper bounds on true gains, while missed capabilities (Section~\ref{sec:discussion}) push in the other direction.
 
 \paragraph{Agreement with the code maps}
-For the 58 code events that the annotator decided and whose map gives a clear verdict, we compared the human label (extraction error versus a real change) with the map's verdict on whether the capability is newly reachable. Table~\ref{tab:precision} reports labels after a second pass against the written definitions; agreement with the code maps on the first pass was 72\% (Cohen's $\kappa = 0.44$).
+For the 58 code events that the annotator decided and whose map gives a clear verdict, we compared the human label (extraction error versus a real change) with the map's verdict on whether the capability is newly reachable. They agree on 72\% of events (Cohen's $\kappa = 0.44$), which is moderate agreement. The maps are useful for reading code but cannot replace human judgment, so we use the human labels as ground truth.
 
 \paragraph{What security-relevant changes look like}
-Of the 39 real changes, 12 (31\%) are security-relevant; the rest are routine for the tool's purpose, such as reading a non-secret configuration variable, writing the server's own cache, or adding a log file. The security-relevant ones fall into four groups. Five give an existing tool access to credentials it did not touch before: device login passwords read from the environment, a storage service's secret key, an internal token-minting secret, a map of per-account API keys, and an identity-provider token exchange that uses the caller's bearer token. Three let the AI decide what runs, what is deleted, or where data is written: a test-case listing tool that gained an optional parameter naming the file to overwrite, a data-analysis server that started executing model-written Python inside the user's live session, and a Kubernetes delete tool that now passes the model's arguments to the \texttt{kubectl} program and can delete any resource kind rather than three. Three add a new local channel or store: a loopback WebSocket that replaces the browser's native-messaging bridge, a database file created by a permissions tool in a server that lets agents build their own tools, and a voice-control switch in a desktop-automation server. The last is a description that now directs the agent to move saved credentials into a live web action, with explicit safeguards.
+Of the 43 real changes, 13 (30\%) are security-relevant; the rest are routine for the tool's purpose, such as reading a non-secret configuration variable, writing the server's own cache, or adding a log file. The security-relevant ones fall into four groups. Six concern credentials: device login passwords and a storage service's secret key read from the environment, an internal token-minting secret, a map of per-account API keys, an identity-provider token exchange that uses the caller's bearer token, and environment-held credentials in a ticketing tool. Three let the AI decide what runs or where data is written: a test-case listing tool that gained an optional parameter naming the file to overwrite, a data-analysis server that started executing model-written Python inside the user's live session, and a tool whose output is a shell command its description tells the agent to run. Three add a new local channel or store: a loopback WebSocket that replaces the browser's native-messaging bridge, a database file created by a permissions tool in a server that lets agents build their own tools, and a voice-control switch in a desktop-automation server. The last is a description that now directs the agent to move saved credentials into a live web action, with explicit safeguards.
 
 \begin{finding}{3}
-About half of what a static scanner flags is a real change, and precision ranges from a third for helper-based matches to three quarters in a tool's own handler. Of the real changes, about 30\% are security-relevant: credential access, AI-controlled execution or file writes, and new local channels. Risky changes are a minority inside a steady flow of routine updates.
+About half of what a static scanner flags is a real change, and precision ranges from 40\% for gains attributed to other tools to two thirds in a tool's own handler. Of the real changes, about 30\% are security-relevant: credential access, AI-controlled execution or file writes, and new local channels. Risky changes are a minority inside a steady flow of routine updates.
 \end{finding}
