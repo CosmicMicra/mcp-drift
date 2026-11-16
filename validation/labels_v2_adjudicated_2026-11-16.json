@@ -1,0 +1,344 @@
+{
+ "events": {
+  "e-1": {
+   "label": "benign",
+   "was": "extraction_error",
+   "why": "definition clarification: real but routine"
+  },
+  "e-10": {
+   "at": "2026-11-16T01:50:03Z",
+   "label": "security_relevant"
+  },
+  "e-11": {
+   "at": "2026-11-16T01:50:40Z",
+   "label": "extraction_error"
+  },
+  "e-111": {
+   "at": "2026-11-16T00:45:06Z",
+   "label": "benign"
+  },
+  "e-112": {
+   "at": "2026-11-16T01:03:02Z",
+   "label": "extraction_error"
+  },
+  "e-113": {
+   "at": "2026-11-16T01:09:33Z",
+   "label": "security_relevant"
+  },
+  "e-114": {
+   "at": "2026-11-16T01:13:43Z",
+   "label": "extraction_error"
+  },
+  "e-115": {
+   "at": "2026-11-16T01:22:31Z",
+   "label": "extraction_error"
+  },
+  "e-116": {
+   "at": "2026-11-16T01:24:18Z",
+   "label": "extraction_error"
+  },
+  "e-117": {
+   "at": "2026-11-16T01:37:44Z",
+   "label": "benign"
+  },
+  "e-118": {
+   "at": "2026-11-16T01:47:14Z",
+   "label": "extraction_error"
+  },
+  "e-119": {
+   "at": "2026-11-16T01:49:28Z",
+   "label": "extraction_error"
+  },
+  "e-12": {
+   "at": "2026-11-16T01:52:48Z",
+   "label": "security_relevant"
+  },
+  "e-120": {
+   "at": "2026-11-16T01:50:23Z",
+   "label": "benign"
+  },
+  "e-121": {
+   "at": "2026-11-16T01:51:31Z",
+   "label": "extraction_error"
+  },
+  "e-122": {
+   "at": "2026-11-16T01:54:11Z",
+   "label": "extraction_error"
+  },
+  "e-123": {
+   "at": "2026-11-16T01:54:53Z",
+   "label": "benign"
+  },
+  "e-124": {
+   "at": "2026-11-16T01:55:08Z",
+   "label": "benign"
+  },
+  "e-125": {
+   "at": "2026-11-16T01:55:32Z",
+   "label": "security_relevant"
+  },
+  "e-126": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-13": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-14": {
+   "at": "2026-11-16T01:55:01Z",
+   "label": "security_relevant"
+  },
+  "e-15": {
+   "at": "2026-11-16T01:55:17Z",
+   "label": "security_relevant"
+  },
+  "e-16": {
+   "at": "2026-11-16T01:55:34Z",
+   "label": "benign"
+  },
+  "e-161": {
+   "at": "2026-11-16T00:47:57Z",
+   "label": "benign"
+  },
+  "e-162": {
+   "at": "2026-11-16T01:01:35Z",
+   "label": "benign"
+  },
+  "e-163": {
+   "at": "2026-11-16T01:10:01Z",
+   "label": "security_relevant"
+  },
+  "e-164": {
+   "at": "2026-11-16T01:13:48Z",
+   "label": "benign"
+  },
+  "e-165": {
+   "at": "2026-11-16T01:22:40Z",
+   "label": "benign"
+  },
+  "e-166": {
+   "at": "2026-11-16T01:24:25Z",
+   "label": "benign"
+  },
+  "e-167": {
+   "at": "2026-11-16T01:38:13Z",
+   "label": "benign"
+  },
+  "e-168": {
+   "at": "2026-11-16T01:47:31Z",
+   "label": "extraction_error"
+  },
+  "e-169": {
+   "at": "2026-11-16T01:49:48Z",
+   "label": "extraction_error"
+  },
+  "e-170": {
+   "at": "2026-11-16T01:50:29Z",
+   "label": "extraction_error"
+  },
+  "e-171": {
+   "at": "2026-11-16T01:52:02Z",
+   "label": "benign"
+  },
+  "e-172": {
+   "at": "2026-11-16T01:54:12Z",
+   "label": "extraction_error"
+  },
+  "e-173": {
+   "at": "2026-11-16T01:54:56Z",
+   "label": "benign"
+  },
+  "e-174": {
+   "at": "2026-11-16T01:55:14Z",
+   "label": "benign"
+  },
+  "e-175": {
+   "at": "2026-11-16T01:55:33Z",
+   "label": "benign"
+  },
+  "e-176": {
+   "at": "2026-11-16T01:55:41Z",
+   "label": "benign"
+  },
+  "e-2": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-3": {
+   "label": "extraction_error",
+   "was": "security_relevant",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-4": {
+   "label": "benign",
+   "was": "extraction_error",
+   "why": "definition clarification: real but routine"
+  },
+  "e-5": {
+   "at": "2026-11-16T01:15:15Z",
+   "label": "security_relevant",
+   "note": "author keeps security_relevant; reason to be written"
+  },
+  "e-51": {
+   "at": "2026-11-15T23:07:29Z",
+   "label": "benign"
+  },
+  "e-52": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-53": {
+   "at": "2026-11-16T01:04:07Z",
+   "label": "benign"
+  },
+  "e-54": {
+   "label": "benign",
+   "was": "extraction_error",
+   "why": "definition clarification: real but routine"
+  },
+  "e-55": {
+   "at": "2026-11-16T01:15:28Z",
+   "label": "extraction_error"
+  },
+  "e-56": {
+   "at": "2026-11-16T01:23:13Z",
+   "label": "security_relevant"
+  },
+  "e-57": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-58": {
+   "at": "2026-11-16T01:44:36Z",
+   "label": "extraction_error"
+  },
+  "e-59": {
+   "at": "2026-11-16T01:48:23Z",
+   "label": "unsure"
+  },
+  "e-6": {
+   "at": "2026-11-16T01:22:56Z",
+   "label": "security_relevant"
+  },
+  "e-60": {
+   "at": "2026-11-16T01:50:13Z",
+   "label": "benign"
+  },
+  "e-61": {
+   "at": "2026-11-16T01:50:48Z",
+   "label": "extraction_error"
+  },
+  "e-62": {
+   "at": "2026-11-16T01:53:14Z",
+   "label": "extraction_error"
+  },
+  "e-63": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-64": {
+   "at": "2026-11-16T01:55:06Z",
+   "label": "extraction_error"
+  },
+  "e-65": {
+   "at": "2026-11-16T01:55:18Z",
+   "label": "extraction_error"
+  },
+  "e-66": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-7": {
+   "at": "2026-11-16T01:40:42Z",
+   "label": "unsure",
+   "notes": "feels security, but not sure"
+  },
+  "e-8": {
+   "label": "real_pending",
+   "was": "extraction_error",
+   "why": "definition clarification: real but routine"
+  },
+  "e-81": {
+   "at": "2026-11-15T23:07:41Z",
+   "label": "benign"
+  },
+  "e-82": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-83": {
+   "at": "2026-11-16T01:09:31Z",
+   "label": "security_relevant"
+  },
+  "e-84": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  },
+  "e-85": {
+   "label": "benign",
+   "was": "extraction_error",
+   "why": "definition clarification: real but routine"
+  },
+  "e-86": {
+   "at": "2026-11-16T01:23:53Z",
+   "label": "extraction_error"
+  },
+  "e-87": {
+   "label": "benign",
+   "was": "extraction_error",
+   "why": "definition clarification: real but routine"
+  },
+  "e-88": {
+   "at": "2026-11-16T01:44:52Z",
+   "label": "extraction_error"
+  },
+  "e-89": {
+   "at": "2026-11-16T01:49:10Z",
+   "label": "extraction_error"
+  },
+  "e-9": {
+   "at": "2026-11-16T01:47:59Z",
+   "label": "benign"
+  },
+  "e-90": {
+   "at": "2026-11-16T01:50:16Z",
+   "label": "extraction_error"
+  },
+  "e-91": {
+   "at": "2026-11-16T01:51:31Z",
+   "label": "extraction_error"
+  },
+  "e-92": {
+   "at": "2026-11-16T01:53:42Z",
+   "label": "unsure"
+  },
+  "e-93": {
+   "at": "2026-11-16T01:54:52Z",
+   "label": "extraction_error"
+  },
+  "e-94": {
+   "at": "2026-11-16T01:55:07Z",
+   "label": "security_relevant"
+  },
+  "e-95": {
+   "at": "2026-11-16T01:55:31Z",
+   "label": "extraction_error"
+  },
+  "e-96": {
+   "label": "extraction_error",
+   "was": "benign",
+   "why": "definition clarification: capability not new for this tool"
+  }
+ },
+ "note": "Round-2 labels after adjudication on 2026-11-16. The author reviewed disagreements with the code maps and agreed that 17 differed only in how the label definitions were read (benign used for \"harmless even if not new\"; extraction error used for \"real but trivial\"). e-8 is real; benign vs security relevant still to be decided by the author. Originals: labels_v2_frozen_2026-11-16.json."
+}
