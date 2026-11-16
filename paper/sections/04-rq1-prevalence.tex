@@ -17,6 +17,9 @@ At the server level, where we look for each capability anywhere in the source ra
 \paragraph{When gains happen}
 Silent high-risk gains (Section~\ref{sec:rq2}) do not cluster at the start of a project, when a user might still be evaluating it. Among the 282 servers that have one, the median time from the first tool-bearing release to the first such gain is 43 days (interquartile range 9--126 days). A user who installed and approved the server in its first weeks would usually still be using the earlier approval when the capability arrives.
 
+\paragraph{Releases versus commits}
+A reader may worry that commit sampling (Section~\ref{sec:versions}) counts work in progress that no user installed. It does not inflate our results. Per version pair, silent capability gains occur at the same rate in the 1,584 servers we sampled at tagged releases and in the 983 we sampled at commits (12.8 per 100 pairs in both). Per server, tagged servers show more drift, 17.2\% with a silent gain against 8.4\%, because we observe more of their versions (a median of 15 against 5). The pooled server-level rates are therefore conservative for servers that publish releases, which are the versions users install.
+
 \paragraph{New destinations}
 1,391 servers (54.2\%) introduce at least one external hostname that did not appear in earlier versions. Most are documentation links or the APIs the server is built around; we use this signal only to locate changes in where data can go, not as evidence of misuse.
 
