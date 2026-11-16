@@ -91,17 +91,17 @@
     "Description changed or tool added": {
       "median_per_year": 4.147936987046438,
       "mean_per_year": 8.325737154678192,
-      "coverage": 0.4166666666666667
+      "coverage": 0.36363636363636365
     },
     "Any tool's description changed": {
       "median_per_year": 2.388302181042936,
       "mean_per_year": 5.610062498320844,
-      "coverage": 0.25
+      "coverage": 0.18181818181818182
     },
     "Changed tool's own description": {
       "median_per_year": 2.388302181042936,
       "mean_per_year": 5.610062498320844,
-      "coverage": 0.16666666666666666
+      "coverage": 0.18181818181818182
     },
     "Any capability gained": {
       "median_per_year": 1.1526848678588828,
@@ -111,9 +111,9 @@
     "High-risk capability gained": {
       "median_per_year": 0.6130381331530341,
       "mean_per_year": 1.3549283040759996,
-      "coverage": 0.9166666666666666
+      "coverage": 0.9090909090909091
     }
   },
   "policy_servers": 1667,
-  "policy_target_steps": 12
+  "policy_target_steps": 11
 }

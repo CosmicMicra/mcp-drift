@@ -179,9 +179,9 @@
    "why": "definition clarification: real but routine"
   },
   "e-5": {
-   "at": "2026-11-16T01:15:15Z",
-   "label": "security_relevant",
-   "note": "author keeps security_relevant; reason to be written"
+   "label": "extraction_error",
+   "was": "security_relevant",
+   "why": "description already instructed the agent to run an upgrade command; the new version only changes the command and adds a fallback, so no new shell capability"
   },
   "e-51": {
    "at": "2026-11-15T23:07:29Z",
