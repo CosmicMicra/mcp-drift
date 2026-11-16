@@ -4,7 +4,7 @@ Parsing uses tree-sitter (Python, TypeScript/JavaScript). For each tool we
 record its name, its description (literal strings resolved, including
 implicit concatenation, template literals without substitutions and
 same-file string constants), and capability signals found in its handler
-plus helper functions it calls (depth <= 2, resolved repo-wide by name).
+plus helper functions it calls (up to four calls deep by default).
 
 Supported registration styles
   Python: @<x>.tool(...) decorators (FastMCP / official SDK high-level API)
@@ -523,7 +523,7 @@ def _pick_definition(defs, tool_file):
     return cands[0] if best > 0 and len(cands) == 1 else None
 
 
-def analyze_tree(files):
+def analyze_tree(files, depth=4):
     """files: dict path -> text. Returns (tools, server_caps, server_domains)."""
     all_tools, all_funcs, server_text, def_count, defs_by_name = [], {}, [], {}, {}
     for path, text in files.items():
@@ -546,7 +546,7 @@ def analyze_tree(files):
         server_text.append(text)
     for t in all_tools:
         parts, seen, frontier = [("self", t._body)], set(), [t._body]
-        for _ in range(4):
+        for _ in range(depth):
             nxt = []
             for b in frontier:
                 for c in RESOLVE_RE.findall(_strip_code(b)):   # calls in code only, not in strings/comments
