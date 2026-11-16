@@ -112,27 +112,33 @@ def disclosure(ev):
     return {c: dict(cnt[c]) for c in CAP_LABEL}
 
 
+def human_targets():
+    """(repo, new commit, tool) of each sampled change the author labelled security-relevant (adjudicated)."""
+    lab = json.load(open(ROOT / "validation/labels_v2_adjudicated_2026-11-16.json"))["events"]
+    items = {r["item"]: r for r in csv.DictReader(open(ROOT / "maps/items.csv"))}
+    return [(items[i]["repo"], items[i]["new_version"][:10], items[i]["tool"])
+            for i, v in lab.items() if v["label"] == "security_relevant"]
+
+
 def policies(ev, summ):
-    """Prompts per server-year under each re-approval rule, and the share of
-    silent high-risk tool gains each rule would surface (proxy until human labels are in)."""
+    """Prompts per server-year under each re-approval rule, and the share of the human-labelled
+    security-relevant changes (validation sample) that each rule would have surfaced."""
     steps = defaultdict(lambda: defaultdict(set))
-    target = set()  # (repo, step) with a silent high-risk tool gain
-    # NOTE: this target comes from the same detector as the capability rules, so their coverage is
-    # trivially 100%. Final figure: replace with human-labelled security-relevant changes.
+    own_desc = set()   # (repo, step, tool) whose own description changed
+    step_of = {}
     for e in ev:
         k, s = e["repo"], e["step"]
+        step_of[(k, e["to"])] = s
         if e["type"] == "DESC_MUTATION":
             steps[k]["desc"].add(s)
+            own_desc.add((k, s, e.get("tool")))
         if e["type"] == "TOOL_ADDED":
             steps[k]["added"].add(s)
         if e["type"] in ("TOOL_CAP_GAIN", "SERVER_CAP_GAIN"):
             steps[k]["cap"].add(s)
             if e["cap"] in HIGH:
                 steps[k]["high"].add(s)
-        if e["type"] == "TOOL_CAP_GAIN" and e["cap"] in HIGH and e.get("direct"):
-            steps[k]["highdirect"].add(s)
-        if e["type"] == "TOOL_CAP_GAIN" and e["cap"] in HIGH and e["disclosure"] == "silent":
-            target.add((k, s))
+    target = [(k, step_of[(k, to)], tool) for k, to, tool in human_targets() if (k, to) in step_of]
     rules = {
         "Every update": lambda k, n: set(range(1, n)),
         "Description changed or tool added": lambda k, n: steps[k]["desc"] | steps[k]["added"],
@@ -143,29 +149,27 @@ def policies(ev, summ):
     }
     out = {}
     eligible = [r for r in summ if (int(r["last_time"]) - int(r["first_time"])) / YEAR >= 0.25]
+    nver = {r["repo"]: int(r["n_versions"]) for r in summ}
     for name, f in rules.items():
-        if f is None:   # per-tool rule: a silent gain is by definition one whose own description did not change
-            out[name] = dict(out["Any tool's description changed"], coverage=0.0)
+        if f is None:   # per-tool rule: fires only if the changed tool's own description changed
+            hit = sum(1 for k, s_, tool in target if (k, s_, tool) in own_desc)
+            out[name] = dict(out["Any tool's description changed"], coverage=hit / len(target))
             continue
-        rates, hit = [], 0
+        rates = []
         for r in eligible:
             k, n = r["repo"], int(r["n_versions"])
             yrs = (int(r["last_time"]) - int(r["first_time"])) / YEAR
-            fired = f(k, n)
-            rates.append(len(fired) / yrs)
-        for (k, s) in target:
-            n = next((int(r["n_versions"]) for r in summ if r["repo"] == k), 0)
-            if s in f(k, n):
-                hit += 1
+            rates.append(len(f(k, n)) / yrs)
+        hit = sum(1 for k, s_, _ in target if s_ in f(k, nver.get(k, 0)))
         out[name] = {"median_per_year": st.median(rates), "mean_per_year": st.mean(rates),
                      "coverage": hit / len(target) if target else 0.0}
     fig, ax = plt.subplots(figsize=(3.4, 2.4))
     short = {"Every update": ("Every update", (-4, -11), "right"),
              "Description changed or tool added": ("Description changed\nor tool added", (5, -3), "left"),
-             "Any tool's description changed": ("Any description\nchanged (server)", (5, -3), "left"),
-             "Changed tool's own description": ("Tool's own description\nchanged", (5, 2), "left"),
+             "Any tool's description changed": ("Any description\nchanged (server)", (5, 1), "left"),
+             "Changed tool's own description": ("Tool's own\ndescription changed", (5, -12), "left"),
              "Any capability gained": ("Any capability", (4, -11), "left"),
-             "High-risk capability gained": ("High-risk\ncapability", (-4, -16), "right")}
+             "High-risk capability gained": ("High-risk\ncapability", (4, -14), "left")}
     for name, v in out.items():
         x, y = max(v["median_per_year"], 0.05), 100 * v["coverage"]
         ax.plot(x, y, "o", color=BLUE, markersize=5, markeredgecolor="white", markeredgewidth=1, zorder=3)
@@ -175,7 +179,7 @@ def policies(ev, summ):
     ax.set_xticks([0.5, 1, 2, 5, 10, 20], ["0.5", "1", "2", "5", "10", "20"])
     ax.set_xlim(0.4, 30)
     ax.set_xlabel(f"Prompts per server per year (median, n = {len(eligible):,})")
-    ax.set_ylabel("Risky changes surfaced (%)")
+    ax.set_ylabel(f"Security-relevant changes\nsurfaced (%, n = {len(target)})")
     ax.set_ylim(-5, 105)
     ax.grid(True, color=GRID, linewidth=0.5)
     ax.set_axisbelow(True)
