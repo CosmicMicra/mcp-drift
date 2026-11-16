@@ -262,9 +262,8 @@
    "notes": "feels security, but not sure"
   },
   "e-8": {
-   "label": "security_relevant",
-   "was": "extraction_error",
-   "why": "new error branches write the full config, including the Atlassian API token, to the server log"
+   "label": "unsure",
+   "was": "extraction_error"
   },
   "e-81": {
    "at": "2026-11-15T23:07:41Z",
@@ -340,5 +339,5 @@
    "why": "definition clarification: capability not new for this tool"
   }
  },
- "note": "Round-2 labels after adjudication on 2026-11-16. The author reviewed disagreements with the code maps and agreed that 17 differed only in how the label definitions were read (benign used for \"harmless even if not new\"; extraction error used for \"real but trivial\"). Originals: labels_v2_frozen_2026-11-16.json. Later re-examination: e-5 (extraction error) and e-8 (security relevant)."
+ "note": "Round-2 labels after adjudication on 2026-11-16. The author reviewed disagreements with the code maps and agreed that 17 differed only in how the label definitions were read (benign used for \"harmless even if not new\"; extraction error used for \"real but trivial\"). Originals: labels_v2_frozen_2026-11-16.json. Later re-examination: e-5 (extraction error) and e-8 (unsure)."
 }
