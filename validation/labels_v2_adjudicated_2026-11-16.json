@@ -257,9 +257,8 @@
    "why": "definition clarification: capability not new for this tool"
   },
   "e-7": {
-   "at": "2026-11-16T01:40:42Z",
-   "label": "unsure",
-   "notes": "feels security, but not sure"
+   "label": "security_relevant",
+   "was": "unsure"
   },
   "e-8": {
    "label": "unsure",
@@ -318,8 +317,8 @@
    "label": "extraction_error"
   },
   "e-92": {
-   "at": "2026-11-16T01:53:42Z",
-   "label": "unsure"
+   "label": "extraction_error",
+   "was": "unsure"
   },
   "e-93": {
    "at": "2026-11-16T01:54:52Z",
@@ -339,5 +338,5 @@
    "why": "definition clarification: capability not new for this tool"
   }
  },
- "note": "Round-2 labels after adjudication on 2026-11-16. The author reviewed disagreements with the code maps and agreed that 17 differed only in how the label definitions were read (benign used for \"harmless even if not new\"; extraction error used for \"real but trivial\"). Originals: labels_v2_frozen_2026-11-16.json. Later re-examination: e-5 (extraction error) and e-8 (unsure)."
+ "note": "Round-2 labels after adjudication on 2026-11-16. The author reviewed disagreements with the code maps and agreed that 17 differed only in how the label definitions were read (benign used for \"harmless even if not new\"; extraction error used for \"real but trivial\"). Originals: labels_v2_frozen_2026-11-16.json. Later re-examination: e-5 (extraction error) and e-8 (unsure), e-7 (security relevant), e-92 (extraction error); e-59 stays unsure."
 }
