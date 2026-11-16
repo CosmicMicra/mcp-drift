@@ -1,0 +1,245 @@
+{
+ "events": {
+  "e-1": {
+   "label": "extraction_error"
+  },
+  "e-10": {
+   "label": "security_relevant"
+  },
+  "e-11": {
+   "label": "extraction_error"
+  },
+  "e-111": {
+   "label": "benign"
+  },
+  "e-112": {
+   "label": "extraction_error"
+  },
+  "e-113": {
+   "label": "security_relevant"
+  },
+  "e-114": {
+   "label": "extraction_error"
+  },
+  "e-115": {
+   "label": "extraction_error"
+  },
+  "e-116": {
+   "label": "extraction_error"
+  },
+  "e-117": {
+   "label": "benign"
+  },
+  "e-118": {
+   "label": "extraction_error"
+  },
+  "e-119": {
+   "label": "extraction_error"
+  },
+  "e-12": {
+   "label": "security_relevant"
+  },
+  "e-120": {
+   "label": "benign"
+  },
+  "e-121": {
+   "label": "extraction_error"
+  },
+  "e-122": {
+   "label": "extraction_error"
+  },
+  "e-123": {
+   "label": "benign"
+  },
+  "e-124": {
+   "label": "benign"
+  },
+  "e-125": {
+   "label": "security_relevant"
+  },
+  "e-126": {
+   "label": "benign"
+  },
+  "e-13": {
+   "label": "extraction_error"
+  },
+  "e-14": {
+   "label": "security_relevant"
+  },
+  "e-15": {
+   "label": "security_relevant"
+  },
+  "e-16": {
+   "label": "benign"
+  },
+  "e-161": {
+   "label": "benign"
+  },
+  "e-162": {
+   "label": "benign"
+  },
+  "e-163": {
+   "label": "security_relevant"
+  },
+  "e-164": {
+   "label": "benign"
+  },
+  "e-165": {
+   "label": "benign"
+  },
+  "e-166": {
+   "label": "benign"
+  },
+  "e-167": {
+   "label": "benign"
+  },
+  "e-168": {
+   "label": "extraction_error"
+  },
+  "e-169": {
+   "label": "extraction_error"
+  },
+  "e-170": {
+   "label": "extraction_error"
+  },
+  "e-171": {
+   "label": "benign"
+  },
+  "e-172": {
+   "label": "extraction_error"
+  },
+  "e-173": {
+   "label": "benign"
+  },
+  "e-174": {
+   "label": "benign"
+  },
+  "e-175": {
+   "label": "benign"
+  },
+  "e-176": {
+   "label": "benign"
+  },
+  "e-2": {
+   "label": "benign"
+  },
+  "e-3": {
+   "label": "security_relevant"
+  },
+  "e-4": {
+   "label": "extraction_error"
+  },
+  "e-5": {
+   "label": "extraction_error"
+  },
+  "e-51": {
+   "label": "benign"
+  },
+  "e-52": {
+   "label": "benign"
+  },
+  "e-53": {
+   "label": "benign"
+  },
+  "e-54": {
+   "label": "extraction_error"
+  },
+  "e-55": {
+   "label": "extraction_error"
+  },
+  "e-56": {
+   "label": "security_relevant"
+  },
+  "e-57": {
+   "label": "benign"
+  },
+  "e-58": {
+   "label": "extraction_error"
+  },
+  "e-59": {
+   "label": "unsure"
+  },
+  "e-6": {
+   "label": "security_relevant"
+  },
+  "e-60": {
+   "label": "benign"
+  },
+  "e-61": {
+   "label": "extraction_error"
+  },
+  "e-62": {
+   "label": "extraction_error"
+  },
+  "e-63": {
+   "label": "extraction_error"
+  },
+  "e-64": {
+   "label": "extraction_error"
+  },
+  "e-65": {
+   "label": "extraction_error"
+  },
+  "e-66": {
+   "label": "benign"
+  },
+  "e-7": {
+   "label": "security_relevant"
+  },
+  "e-8": {
+   "label": "unsure"
+  },
+  "e-81": {
+   "label": "benign"
+  },
+  "e-82": {
+   "label": "benign"
+  },
+  "e-83": {
+   "label": "security_relevant"
+  },
+  "e-84": {
+   "label": "benign"
+  },
+  "e-85": {
+   "label": "extraction_error"
+  },
+  "e-86": {
+   "label": "extraction_error"
+  },
+  "e-87": {
+   "label": "extraction_error"
+  },
+  "e-88": {
+   "label": "extraction_error"
+  },
+  "e-89": {
+   "label": "extraction_error"
+  },
+  "e-9": {
+   "label": "benign"
+  },
+  "e-90": {
+   "label": "extraction_error"
+  },
+  "e-91": {
+   "label": "extraction_error"
+  },
+  "e-92": {
+   "label": "extraction_error"
+  },
+  "e-93": {
+   "label": "extraction_error"
+  },
+  "e-94": {
+   "label": "security_relevant"
+  },
+  "e-95": {
+   "label": "extraction_error"
+  },
+  "e-96": {
+   "label": "benign"
+  }
+ },
+ "note": "Labels exactly as stored on the labelling page (collection labels_v2), exported 2026-11-16."
+}
