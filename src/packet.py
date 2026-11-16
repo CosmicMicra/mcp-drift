@@ -19,8 +19,10 @@ pdfmetrics.registerFont(TTFont('Mono', FD + 'DejaVuSansMono.ttf'))
 from reportlab.lib.fonts import addMapping
 addMapping('Sans', 0, 0, 'Sans'); addMapping('Sans', 1, 0, 'Sans-B'); addMapping('Sans', 0, 1, 'Sans'); addMapping('Sans', 1, 1, 'Sans-B')
 
-N = int(sys.argv[1]) if len(sys.argv) > 1 else 30
-OUT = f'{R}/validation/labeling_packet_1-{N}.pdf'
+# usage: packet.py END  or  packet.py START END  (positions in labelling-page order)
+A = [int(x) for x in sys.argv[1:3]] or [30]
+S, N = (A[0], A[1]) if len(A) == 2 else (1, A[0])
+OUT = f'{R}/validation/labeling_packet_{S}-{N}.pdf'
 INK, MUTED, ACC, LINE, SOFT = '#1f2933', '#52606d', '#1d4e89', '#cbd2d9', '#eef2f7'
 ss = getSampleStyleSheet()
 T = ParagraphStyle('t', fontName='Sans-B', fontSize=17, leading=21, textColor=INK, spaceAfter=4)
@@ -41,6 +43,12 @@ STRAT = {"silent_highrisk_direct": "High-risk gain in the tool's own code, descr
 CAP = {"shell": "run shell commands / programs", "env_secrets": "read environment variables or secrets",
        "fs_write": "write or delete files", "fs_read": "read local files", "network": "make network requests",
        "dynamic_code": "run dynamically generated code"}
+LOOK = {"shell": ["subprocess", "child_process", "spawn", "exec(", "os.system"],
+        "env_secrets": ["process.env", "os.environ", "getenv", "keyring", ".ssh", ".aws"],
+        "fs_write": ["writeFile", "open(", '"w"', "unlink", "mkdir", "rmtree", "os.remove"],
+        "fs_read": ["readFile", "open(", "read_text", "readdir", "listdir"],
+        "network": ["fetch(", "axios", "requests.", "httpx", "http.request"],
+        "dynamic_code": ["eval(", "exec(", "new Function", "importlib", "pickle.load"]}
 
 
 def pre(text):
@@ -65,7 +73,7 @@ def inline(s):
     s = escape(s)
     s = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', s)
     s = re.sub(r'`([^`]+)`', r'<font name="Mono" size="7.6">\1</font>', s)
-    s = re.sub(r'(https?://[^\s<)]+)', r'<link href="\1" color="#1d4e89">\1</link>', s)
+    s = re.sub(r'(https?://[^\s<)"\'&]+)', r'<link href="\1" color="#1d4e89">\1</link>', s)
     return s
 
 
@@ -108,10 +116,20 @@ def main():
     data = json.loads(re.search(r'<script type="application/json" id="data">(.*?)</script>', s, re.S)
                       .group(1).replace('<\\/', '</'))
     ev = {f"e-{e['id']}": e for e in data['events']}
-    items = list(csv.DictReader(open(f'{R}/maps/items.csv')))[:N]
+    rows_csv = {r['item']: r for r in csv.DictReader(open(f'{R}/maps/items.csv'))}
+    items = []
+    for pos, e in enumerate(data['events'], 1):
+        if not (S <= pos <= N):
+            continue
+        iid = f"e-{e['id']}"
+        items.append({'item': iid, 'page_position': str(pos), 'repo': e['repo'], 'tool': e['tool'] or '(whole server)',
+                      'flagged_capability': e['cap'], 'found_via': e.get('via') or '', 'old_version': e.get('a', ''),
+                      'new_version': e.get('b', ''), 'compare_url': e['url'], 'category': e['s'],
+                      'has_map': iid in rows_csv})
 
     story = [Paragraph('MCP Drift: Labelling Packet', T),
-             Paragraph(f'Items 1–{N}, in the same order as the labelling page. Blind round: facts only.', SM),
+             Paragraph(f'Items {S}–{N}, in the same order as the labelling page (item numbers match the page). Blind round: facts only. '
+                       'Facts maps exist for the 80 items in the round-2 target; items without one say so.', SM),
              Spacer(1, 6),
              Paragraph('How to use this packet', H),
              Paragraph('For each item: read <b>What this server does</b> and the <b>tool description</b>, check the '
@@ -138,7 +156,7 @@ def main():
     for r in items:
         idx.append([Paragraph(r['page_position'], CELL), Paragraph(r['item'], CELL), Paragraph(escape(r['repo']), CELL),
                     Paragraph(escape(r['tool']), CELL), Paragraph(escape(r['flagged_capability']), CELL)])
-    t = Table(idx, colWidths=[8 * mm, 13 * mm, 70 * mm, 50 * mm, 31 * mm], repeatRows=1)
+    t = Table(idx, colWidths=[11 * mm, 13 * mm, 67 * mm, 50 * mm, 31 * mm], repeatRows=1)
     t.setStyle(TableStyle([('GRID', (0, 0), (-1, -1), 0.3, colors.HexColor(LINE)),
                            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor(SOFT)),
                            ('TOPPADDING', (0, 0), (-1, -1), 2), ('BOTTOMPADDING', (0, 0), (-1, -1), 2)]))
@@ -162,7 +180,9 @@ def main():
                 ['Versions', f"{r['old_version']} → {r['new_version']}"],
                 ['Code change (diff)', f'<link href="{r["compare_url"]}" color="#1d4e89">{escape(r["compare_url"])}</link>'],
                 ['Repository', f'<link href="https://github.com/{r["repo"]}" color="#1d4e89">https://github.com/{escape(r["repo"])}</link>'],
-                ['Code map (online)', f'<link href="https://github.com/CosmicMicra/mcp-drift/blob/main/maps/{r["item"]}.md" color="#1d4e89">maps/{r["item"]}.md</link>']]
+                ['Search the diff for', escape('  ·  '.join(([] if isdesc else LOOK.get(r['flagged_capability'], [])) + ([r['tool']] if r['tool'] != '(whole server)' else []) + ([via] if via and via != 'self' and not isdesc else [])))]]
+        if r['has_map']:
+            rows.append(['Code map (online)', f'<link href="https://github.com/CosmicMicra/mcp-drift/blob/main/maps/{r["item"]}.md" color="#1d4e89">maps/{r["item"]}.md</link>'])
         t = Table([[Paragraph(a, CELLB), Paragraph(b if a in ('Flag', 'Code change (diff)', 'Repository', 'Code map (online)') else escape(b), CELL)]
                    for a, b in rows], colWidths=[34 * mm, 138 * mm])
         t.setStyle(TableStyle([('GRID', (0, 0), (-1, -1), 0.4, colors.HexColor(LINE)), ('VALIGN', (0, 0), (-1, -1), 'TOP'),
@@ -170,6 +190,8 @@ def main():
                                ('TOPPADDING', (0, 0), (-1, -1), 2.5), ('BOTTOMPADDING', (0, 0), (-1, -1), 2.5)]))
         story += [t, Spacer(1, 4)]
         evd = e.get('ev') or {}
+        if evd.get('via_def') and not isdesc:
+            story.append(Paragraph(f"Helper <font name='Mono'>{escape(via)}</font> is defined at <font name='Mono'>{escape(evd['via_def'])}</font>. Check that the tool really calls it.", SM))
         if not isdesc and evd.get('n_add') is not None:
             story.append(Paragraph('Lines added in this version that match the flag (server code, tests excluded)', H2))
             if evd['n_add']:
@@ -187,11 +209,11 @@ def main():
             story.append(Paragraph('New description', H2)); story.append(pre(e.get('new') or '(not recorded)'))
         elif e.get('new'):
             story.append(Paragraph('Tool description (unchanged)', H2)); story.append(pre(e['new']))
-        story.append(Paragraph('Code map (facts only)', H))
-        try:
+        if r['has_map']:
+            story.append(Paragraph('Code map (facts only)', H))
             story += md(open(f"{R}/maps/{r['item']}.md").read())
-        except FileNotFoundError:
-            story.append(Paragraph('(no map file)', SM))
+        else:
+            story.append(Paragraph('No code map for this item (outside the 80-item target). Use the diff link and the search words above.', SM))
         box = Table([[Paragraph('<b>Your label:</b>  ☐ Extraction error   ☐ Benign   ☐ Security relevant   ☐ Unsure', CELL)],
                      [Paragraph('<b>Notes:</b>', CELL)], [Paragraph(' ', CELL)]], colWidths=[172 * mm], rowHeights=[None, None, 14 * mm])
         box.setStyle(TableStyle([('BOX', (0, 0), (-1, -1), 0.8, colors.HexColor(ACC)), ('TOPPADDING', (0, 0), (-1, -1), 4)]))
@@ -202,7 +224,7 @@ def main():
         c.drawString(18 * mm, 10 * mm, 'MCP drift labelling packet · blind round · observations excluded')
         c.drawRightString(letter[0] - 18 * mm, 10 * mm, f'Page {d.page}'); c.restoreState()
     SimpleDocTemplate(OUT, pagesize=letter, leftMargin=18 * mm, rightMargin=18 * mm, topMargin=15 * mm,
-                      bottomMargin=16 * mm, title=f'MCP Drift Labelling Packet 1-{N}').build(story, onFirstPage=footer, onLaterPages=footer)
+                      bottomMargin=16 * mm, title=f'MCP Drift Labelling Packet {S}-{N}').build(story, onFirstPage=footer, onLaterPages=footer)
     print(OUT)
 
 
