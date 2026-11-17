@@ -41,7 +41,7 @@ At each version we parsed every source file with tree-sitter, skipping tests, ex
 \subsection{Detecting capabilities}\label{sec:caps}
 We track six capability classes that matter for approval: running shell commands or other programs, evaluating dynamically constructed code, writing or deleting files, reading files, reading environment variables or credential stores, and network access. Each class is a set of API patterns, for example \texttt{subprocess.*} and \texttt{child\_process} for shell execution, or \texttt{process.env} and \texttt{os.environ} for environment access. We also record every external hostname that appears in a URL literal.
 
-A capability belongs to a tool if the tool's handler can reach it. We start at the handler and follow calls to functions defined in the same repository, up to four calls deep. Name-based call resolution is error-prone, and our first version of the extractor was wrong in ways our validation exposed (Section~\ref{sec:rq3}), so we apply four rules. We match patterns only in code, not inside comments or long string literals: a tool that returns a shell command as text does not itself run a shell. We do not treat imports of constant module names as dynamic code. We follow only bare calls and calls on \texttt{self}, \texttt{this}, or \texttt{cls}; a call such as \texttt{db.execute(...)} has a target we cannot know statically. And we never resolve generic names such as \texttt{run} or \texttt{execute}; when a name has several definitions, we take the one in the tool's own file or package, and otherwise none. For each capability we record whether it appears in the handler itself or which helper introduces it.
+A capability belongs to a tool if the tool's handler can reach it. We start at the handler and follow calls to functions defined in the same repository, up to four calls deep. Name-based call resolution is error-prone, and our first version of the extractor was wrong in ways our validation exposed (Section~\ref{sec:validation}), so we apply four rules. We match patterns only in code, not inside comments or long string literals: a tool that returns a shell command as text does not itself run a shell. We do not treat imports of constant module names as dynamic code. We follow only bare calls and calls on \texttt{self}, \texttt{this}, or \texttt{cls}; a call such as \texttt{db.execute(...)} has a target we cannot know statically. And we never resolve generic names such as \texttt{run} or \texttt{execute}; when a name has several definitions, we take the one in the tool's own file or package, and otherwise none. For each capability we record whether it appears in the handler itself or which helper introduces it.
 
 Tool-level attribution can miss capabilities reached through dynamic dispatch or third-party libraries. We therefore also record server-level capabilities: the classes found anywhere in the server's source.
 
@@ -54,14 +54,42 @@ We call a capability gain \emph{silent} if the tool's description is byte-identi
 We validate the two steps a reader has to trust: that the tools we extract are real, and that the changes we report happened.
 
 \paragraph{Tools}
-An author opened the source of 30 randomly sampled extracted tools and checked whether each is registered as an MCP tool and whether the extracted description is the text a client would receive.
+An author opened the source of 60 randomly sampled extracted tools and checked whether each is registered as an MCP tool and whether the extracted description is the text a client would receive.
 
 \paragraph{Changes}
 We drew a seeded, stratified sample of 200 events from five strata: silent high-risk gains found in a tool's own handler, silent high-risk gains found through a helper, other capability gains, silent server-level gains, and description changes that matched instruction-like text. Taking at most one event per server per stratum keeps prolific repositories from dominating.
 
 One author labeled the first 16 events of each stratum in a seeded random order, 80 in total, reading the server's README, the tool's description at both versions, and the source code and diff between them. No model proposed labels. Labels follow a fixed decision procedure. A change is an \emph{extraction error} if the flagged capability is not reachable from the tool (the code sits in tests, build scripts, a command-line entry point, or another tool, or the extractor matched the wrong function), or if the tool could already do the same in the earlier version. Otherwise it is \emph{security-relevant} if it gives the tool new access to credentials, lets the model's input shape a command, code, or file path, writes outside the server's own data, sends data to a new destination, or contradicts the description; and \emph{benign} if it is routine for the tool's purpose, such as reading a non-secret setting or writing the server's own cache. For description changes, the label is an extraction error if the text did not really change, security-relevant if the new text hides content or steers the model toward unrelated data or tools, and benign otherwise. An annotator may answer \emph{unsure}.
 
-We report precision per stratum with 95\% Wilson intervals (Section~\ref{sec:rq3}).
+We report precision per stratum with 95\% Wilson intervals.
+
+\paragraph{Tool extraction}
+Of 60 sampled tools, 59 are genuine MCP tool definitions (precision at least 91\% at 95\% confidence); the exception is a middleware function our patterns mistook for a tool. 57 of the 60 extracted descriptions match what a client receives; the rest were empty because the description was assigned in a way our extractor did not resolve.
+
+\paragraph{Capability attribution}
+Table~\ref{tab:precision} reports human labels for 80 sampled events. Precision is highest where the evidence is most direct: 67\% for gains in a tool's own handler and 75\% for description changes, against 40--50\% for gains attributed through helpers, to other tools, or at server level. Errors there come from functions that share a name, code in command-line or evaluation paths, and capabilities that only moved within a codebase. We therefore report the handler-level count, 53 servers with a silent high-risk gain, alongside the broader counts throughout.
+
+\begin{table}[t]
+\centering\small
+\caption{Human labels for 80 sampled events, by stratum. Precision is the share of decided events in which the flagged change is real; brackets give 95\% Wilson intervals.}\label{tab:precision}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrl}
+\toprule
+Stratum & Error & Benign & Sec.\ & Unsure & Precision \\
+\midrule
+High-risk, own handler   & 5  & 3  & 7  & 1 & 67\% [42, 85] \\
+High-risk, via helper    & 8  & 6  & 1  & 1 & 47\% [25, 70] \\
+Other capability gain    & 9  & 4  & 2  & 1 & 40\% [20, 64] \\
+Server-level gain        & 8  & 6  & 2  & 0 & 50\% [28, 72] \\
+Description text         & 4  & 11 & 1  & 0 & 75\% [51, 90] \\
+\midrule
+All                      & 34 & 30 & 13 & 3 & 56\% [45, 66] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Robustness}
+Silent capability gains occur at the same rate per version pair in servers sampled at tagged releases and at commits (12.8 per 100 pairs in both), so commit sampling does not inflate our results. Following calls to depth 6 instead of 4 changes the capabilities of 0.2\% of tools on a random sample of 199 servers, while depth 2 would miss 38\%; four levels captures the reachable logic, consistent with the three used by DCIChecker~\cite{dcichecker2026}.
 
 \subsection{Limitations of the method}\label{sec:limits}
 Static analysis shows that a code path exists, not that it runs. We see only capabilities expressed through the APIs we model; code that hides in dependencies, downloads behavior at run time, or uses unusual APIs escapes us, so our capability counts are lower bounds for a determined adversary. We study git histories, while users install packages from npm or PyPI that may differ from the repository. Our population favors popular, open-source servers in three languages. Sampling releases understates the number of changes. Our labels come from a single annotator, so we cannot report agreement between humans, and because we label only flagged events we measure precision but not recall. We return to these limits in Section~\ref{sec:discussion}.

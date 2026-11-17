@@ -12,7 +12,7 @@ Figure~\ref{fig:disclosure} shows the result. Of the 5,740 tool-level capability
 \label{fig:disclosure}
 \end{figure}
 
-In terms of servers, 356 (13.9\%) have at least one silent capability gain and 282 (11.0\%) a silent high-risk gain. For 53 servers (2.1\%) the silent high-risk gain sits in the tool's own handler rather than in a helper it calls, which our validation finds to be the most reliable signal (Section~\ref{sec:rq3}).
+In terms of servers, 356 (13.9\%) have at least one silent capability gain and 282 (11.0\%) a silent high-risk gain. For 53 servers (2.1\%) the silent high-risk gain sits in the tool's own handler rather than in a helper it calls, which our validation finds to be the most reliable signal (Section~\ref{sec:validation}).
 
 \paragraph{Anything visible at all}
 A user might notice a change elsewhere: a new tool, an edited description of another tool, or a changed README. We call a server-level capability gain \emph{fully silent} if none of these happens in the same release. 123 servers (4.8\%) have at least one fully silent gain, and 90 (3.5\%) a fully silent high-risk gain: the code can do something new and dangerous, and nothing a user could read has changed.
