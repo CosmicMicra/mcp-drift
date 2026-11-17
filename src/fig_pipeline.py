@@ -17,7 +17,7 @@ main = [
     ("Find capabilities", "6 classes reachable\nfrom each handler", "per tool and server"),
     ("Compare versions", "capability gains,\ndescription edits", "33,130 version pairs"),
 ]
-below = {4: ("Validate", "stratified sample,\nhuman labels", "80 events, 30 tools"),
+below = {4: ("Validate", "stratified sample,\nhuman labels", "80 events, 60 tools"),
          5: ("Replay policies", "6 re-approval rules\non real histories", "1,667 servers")}
 
 W, H, GAP = 14.6, 11.0, 2.4
