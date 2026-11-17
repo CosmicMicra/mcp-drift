@@ -20,16 +20,16 @@ main = [
 below = {4: ("Validate", "stratified sample,\nhuman labels", "80 events, 60 tools"),
          5: ("Replay policies", "6 re-approval rules\non real histories", "1,667 servers")}
 
-W, H, GAP = 14.6, 11.0, 2.4
+W, H, GAP = 15.3, 11.0, 2.3
 fig, ax = plt.subplots(figsize=(7.1, 2.0))
 ax.set_xlim(0, 6 * W + 5 * GAP + 1); ax.set_ylim(0, 27); ax.axis("off")
 
 def box(x, y, title, sub, count, dashed=False):
     ax.add_patch(FancyBboxPatch((x, y), W, H, boxstyle="round,pad=0.2,rounding_size=0.9",
                                 fc="white" if dashed else SOFT, ec=BLUE, lw=0.8, ls="--" if dashed else "-"))
-    ax.text(x + W / 2, y + H - 1.3, title, ha="center", va="top", fontsize=6.3, color=INK, weight="bold")
-    ax.text(x + W / 2, y + H / 2 - 0.2, sub, ha="center", va="center", fontsize=5.3, color=MUTED, linespacing=1.05)
-    ax.text(x + W / 2, y + 1.0, count, ha="center", va="bottom", fontsize=5.6, color=BLUE)
+    ax.text(x + W / 2, y + H - 1.3, title, ha="center", va="top", fontsize=5.5, color=INK, weight="bold")
+    ax.text(x + W / 2, y + H / 2 - 0.2, sub, ha="center", va="center", fontsize=5.0, color=MUTED, linespacing=1.05)
+    ax.text(x + W / 2, y + 1.0, count, ha="center", va="bottom", fontsize=5.1, color=BLUE)
 
 def arrow(p, q):
     ax.annotate("", q, p, arrowprops=dict(arrowstyle="-|>", color=INK, lw=0.7, mutation_scale=7, shrinkA=0, shrinkB=0))
@@ -47,6 +47,6 @@ for i, s in below.items():
 arrow(src, (xs[5] + W / 2, yb + H + 0.4))
 ax.plot([xs[5] + W / 2, xs[4] + W / 2], [yt - 1.9, yt - 1.9], color=INK, lw=0.7)
 arrow((xs[4] + W / 2, yt - 1.9), (xs[4] + W / 2, yb + H + 0.4))
-ax.text(xs[4] - 0.8, yb + H / 2, "RQ3", ha="right", va="center", fontsize=6, color=MUTED)
-ax.text(xs[5] + W + 0.3, yb + H / 2, "RQ4", ha="left", va="center", fontsize=6, color=MUTED)
+ax.text(xs[4] - 1.2, yb + H / 2, "RQ3", ha="right", va="center", fontsize=6, color=MUTED)
+ax.text(xs[5] + W + 0.9, yb + H / 2, "RQ4", ha="left", va="center", fontsize=6, color=MUTED)
 fig.savefig(ROOT / "paper/figures/fig_pipeline.pdf", bbox_inches="tight", pad_inches=0.02)
