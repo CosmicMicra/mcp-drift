@@ -90,6 +90,3 @@ All                      & 34 & 30 & 13 & 3 & 56\% [45, 66] \\
 
 \paragraph{Robustness}
 Silent capability gains occur at the same rate per version pair in servers sampled at tagged releases and at commits (12.8 per 100 pairs in both), so commit sampling does not inflate our results. Following calls to depth 6 instead of 4 changes the capabilities of 0.2\% of tools on a random sample of 199 servers, while depth 2 would miss 38\%; four levels captures the reachable logic, consistent with the three used by DCIChecker~\cite{dcichecker2026}.
-
-\subsection{Limitations of the method}\label{sec:limits}
-Static analysis shows that a code path exists, not that it runs. We see only capabilities expressed through the APIs we model; code that hides in dependencies, downloads behavior at run time, or uses unusual APIs escapes us, so our capability counts are lower bounds for a determined adversary. We study git histories, while users install packages from npm or PyPI that may differ from the repository. Our population favors popular, open-source servers in three languages. Sampling releases understates the number of changes. Our labels come from a single annotator, so we cannot report agreement between humans, and because we label only flagged events we measure precision but not recall. We return to these limits in Section~\ref{sec:discussion}.
