@@ -1,0 +1,246 @@
+{
+ "note": "Tool-extraction labels for all 60 sampled tools, by the annotator (2026-11-17).",
+ "tools": {
+  "t-1": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-2": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-3": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-4": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-5": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-6": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-7": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-8": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-9": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-10": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-11": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-12": {
+   "real": "y",
+   "desc_ok": "n",
+   "notes": "extraction missed the description because it is assigned through a variable"
+  },
+  "t-13": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-14": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-15": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-16": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-17": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-18": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-19": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-20": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-21": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-22": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-23": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-24": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-25": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-26": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-27": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-28": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-29": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-30": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-31": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-32": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-33": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-34": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-35": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-36": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-37": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-38": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-39": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-40": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-41": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-42": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-43": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-44": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-45": {
+   "real": "n",
+   "desc_ok": "n"
+  },
+  "t-46": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-47": {
+   "real": "y",
+   "desc_ok": "n"
+  },
+  "t-48": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-49": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-50": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-51": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-52": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-53": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-54": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-55": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-56": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-57": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-58": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-59": {
+   "real": "y",
+   "desc_ok": "y"
+  },
+  "t-60": {
+   "real": "y",
+   "desc_ok": "y"
+  }
+ }
+}
