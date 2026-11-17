@@ -1,7 +1,7 @@
 \section{Background and Threat Model}\label{sec:background}
 
 \paragraph{MCP tools}
-An MCP server exposes tools to a client. Each tool has a name, a natural-language description, an input schema, and optional \emph{annotations}: hints such as \texttt{readOnlyHint} and \texttt{destructiveHint} that let a server declare whether a tool only reads or may delete data~\cite{mcpspec}. The model sees the name, description, and schema and decides from them when to call the tool; the code that runs is invisible to it. Clients typically ask the user to approve a server or its tools when they are first added, showing the name and description.
+An MCP server exposes tools to a client. Each tool has a name, a natural-language description, an input schema, and optional \emph{annotations}: hints such as \texttt{readOnlyHint} and \texttt{destructiveHint} that let a server declare whether a tool only reads or may delete data~\cite{mcpspec}. The model sees the name, description, and schema and decides from them when to call the tool; the code that runs is invisible to it. Many clients ask the user to approve a server or its tools when they are first added, showing the name and description.
 
 \paragraph{When approval goes stale}
 Servers are installed from package registries or source repositories and updated like any other dependency. An update can change a tool's code, its description, or both. Unless the client re-asks, the user's earlier approval silently extends to the new version. We call the difference between what was approved and what now runs \emph{post-approval drift}.
